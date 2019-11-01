@@ -4,44 +4,47 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\LoginForm */
 
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+    use yii\helpers\Html;
+    use yii\bootstrap\ActiveForm;
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
-
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'layout' => 'horizontal',
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
-
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-        <?= $form->field($model, 'password')->passwordInput() ?>
-
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
+<img src="<?=Yii::getAlias('@web') ?>/Recursos/ZATEMXI%20Logo%20Dorado%20(2).png" id="logo">
+    <form class="formulario">
+        <h1>Inicia Sesion</h1>
+        <div class="contenedor">
+        <div class="input-contenedor">  
+            <i class="fas fa-envelope-square icon"></i>
+            <input type="text" placeholder="Correo Electronico" name="LoginForm[username]" >
         </div>
+        <div class="input-contenedor">  
+            <i class="fas fa-key icon"></i>
+            <input type="password" placeholder="Contraseña" name="LoginForm[password]">
+        </div>
+            <input type="submit" value="Iniciar Sesion" class="button">
+            <p>¿Olvidaste la contraseña? <a class="link" href="recuperar.html">Recuperar</a></p>
+            <p>¿Aun no tienes una cuenta? <a class="link" href="registrarvista.html">Registrate</a></p>
+        </div>
+        </form>
+        
+    <?php $form = ActiveForm::begin([ 'id' => 'login-form', 'options'=>["class"=>"formulario"]]); ?>
 
-    <?php ActiveForm::end(); ?>
-
-    <div class="col-lg-offset-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
-    </div>
+        <h1>Inicia Sesion</h1>
+        <div class="contenedor">
+        <div class="input-contenedor">  
+            <i class="fas fa-envelope-square icon"></i>
+        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+            </div>
+            
+        <div class="input-contenedor">  
+            <i class="fas fa-key icon"></i>
+        <?= $form->field($model, 'password')->passwordInput() ?>
+        </div>
+            
+            <input type="submit" value="Iniciar Sesion" class="button">
+            <p>¿Olvidaste la contraseña? <a class="link" href="recuperar.html">Recuperar</a></p>
+            <p>¿Aun no tienes una cuenta? <a class="link" href="registrarvista.html">Registrate</a></p>}
 </div>
+    <?php ActiveForm::end(); ?>
