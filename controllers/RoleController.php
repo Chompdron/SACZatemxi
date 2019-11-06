@@ -64,8 +64,8 @@ class RoleController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Role();
-
+        $model = new Role();    
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->RoleID]);
         }
