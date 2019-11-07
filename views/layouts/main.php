@@ -51,6 +51,7 @@ AppAsset::register($this);
             ['label' => 'Proveedor', 'url' => ['/proveedor/index']],
             ['label' => 'Receta', 'url' => ['/receta/index']],
             ['label' => 'Roles', 'url' => ['/role/index']],
+            ['label' => 'Usuario Rol', 'url' => ['/user-role/index']],
             ['label' => 'Unidad de Presentacion', 'url' => ['/unidad-presentacion/index']],
             ['label' => 'Usuarios', 'url' => ['/users/index']],
             ['label' => 'Venta', 'url' => ['/venta/index']],
