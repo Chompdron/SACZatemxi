@@ -25,8 +25,6 @@ use kartik\select2\Select2; // utilizados para select2
     </div>
 
 
-   <!--<?= $form->field($model, 'ProveedorID')->textInput() ?> -->
-
     <?= $form->field($model, 'Fecha')->textInput() ?>
 
     <?= $form->field($model, 'Total')->textInput() ?>
