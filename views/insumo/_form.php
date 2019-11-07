@@ -25,14 +25,16 @@ use kartik\select2\Select2;
                     'language' => 'es', 'pluginOptions' => ['allowClear' => true]])?>
     </div>
 
-    <?= $form->field($model, 'Descripcion')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-4 col-lg-4">
+        <?= $form->field($model, 'Descripcion')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'UnidadPresentacionID')->textInput() ?>
-
-    <?= $form->field($model, 'Stock')->textInput() ?>
-
-    <?= $form->field($model, 'PrecioXUnidad')->textInput() ?>
-
+    </div>
+    <div class="col-md-4 col-lg-4">
+        <?= $form->field($model, 'Stock')->textInput() ?>
+    </div>
+    <div class="col-md-4 col-lg-4">
+        <?= $form->field($model, 'PrecioXUnidad')->textInput() ?>
+    </div>
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

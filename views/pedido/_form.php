@@ -21,7 +21,7 @@ use kartik\select2\Select2; // utilizados para select2
 
 
 
-<div class="col-md-4 col-lg-4">
+    <div class="col-md-4 col-lg-4">
         <?=$form->field($model, 'ProductoID')->widget(Select2::classname(), [
                     'id'       => 'producto',
                     'value'    => $model->ProductoID,
@@ -32,17 +32,22 @@ use kartik\select2\Select2; // utilizados para select2
 
     <br><br><br><br>
 
-    <?= $form->field($model, 'UnidadXLote')->textInput() ?>
+    <div class="col-md-4 col-lg-4">
+        <?= $form->field($model, 'UnidadXLote')->textInput() ?>
+    </div>
+    <div class="col-md-4 col-lg-4">
+        <?= $form->field($model, 'FechaInicio')->textInput() ?>
+    </div>
+    <div class="col-md-4 col-lg-4">
+        <?= $form->field($model, 'FechaFin')->textInput() ?>
 
-
-    <?= $form->field($model, 'FechaInicio')->textInput() ?>
-
-    <?= $form->field($model, 'FechaFin')->textInput() ?>
-
-    <?= $form->field($model, 'Status')->checkbox() ?>
-
-    <?= $form->field($model, 'FechaStatusFin')->textInput() ?>
-
+    </div>
+    <div class="col-md-4 col-lg-4">
+        <?= $form->field($model, 'Status')->checkbox() ?>
+    </div>
+    <div class="col-md-4 col-lg-4">
+        <?= $form->field($model, 'FechaStatusFin')->textInput() ?>
+    </div>
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

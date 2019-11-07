@@ -12,12 +12,12 @@ use kartik\select2\Select2; // utilizados para select2
         $cmbUsuario = \yii\helpers\ArrayHelper::map($mUsuario, 'id', 'username');
 
 ?>
- 
+
 <div class="empleado-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-	  <div class="col-md-4 col-lg-4">
+    <div class="col-md-4 col-lg-4">
         <?=$form->field($model, 'UserID')->widget(Select2::classname(), [
                     'id'       => 'usuario',
                     'value'    => $model->UserID,
@@ -27,12 +27,12 @@ use kartik\select2\Select2; // utilizados para select2
 
 
 
-
-    <?= $form->field($model, 'HorasxSem')->textInput() ?>
-
-    <?= $form->field($model, 'PagoxHrs')->textInput() ?>
-
-    <?= $form->field($model, 'UserID')->textInput() ?>
+    <div class="col-md-4 col-lg-4">
+        <?= $form->field($model, 'HorasxSem')->textInput() ?>
+    </div>
+    <div class="col-md-4 col-lg-4">
+        <?= $form->field($model, 'PagoxHrs')->textInput() ?>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
