@@ -21,11 +21,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'RazonSocial') ?>
 
-    <?= $form->field($model, 'TipoClienteID') ?>
-
     <?= $form->field($model, 'RFC') ?>
 
-    <?php // echo $form->field($model, 'Direccion') ?>
+    <?= $form->field($model, 'Direccion') ?>
 
     <?php // echo $form->field($model, 'Telefono') ?>
 

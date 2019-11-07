@@ -29,9 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'ClienteID',
             'NombreComercial',
             'RazonSocial',
-            'TipoClienteID',
             'RFC',
-            //'Direccion',
+            'Direccion',
             //'Telefono',
             //'HorarioEntrega',
 
