@@ -91,12 +91,6 @@ class SiteController extends Controller
         if (Yii::$app->user->isGuest) {
             return Yii::$app->response->redirect(['site/login']);
         }
-
-       \Yii::$app->layout   = 'layout';
-        
-        
-        
-
         return $this->render('index', []);
     }
 
@@ -116,7 +110,8 @@ class SiteController extends Controller
      * @return Response|string
      */
     public function actionLogin()
-    {
+    { 
+        \Yii::$app->layout   = 'login';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }

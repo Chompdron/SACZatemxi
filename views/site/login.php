@@ -11,7 +11,9 @@ $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+
 <img src="<?=Yii::getAlias('@web') ?>/Recursos/ZATEMXI%20Logo%20Dorado%20(2).png" id="logo">
+<!-- 
     <form class="formulario">
         <h1>Inicia Sesion</h1>
         <div class="contenedor">
@@ -28,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <p>¿Aun no tienes una cuenta? <a class="link" href="registrarvista.html">Registrate</a></p>
         </div>
         </form>
-        
+        -->
     <?php $form = ActiveForm::begin([ 'id' => 'login-form', 'options'=>["class"=>"formulario"]]); ?>
 
         <h1>Inicia Sesion</h1>
@@ -45,6 +47,6 @@ $this->params['breadcrumbs'][] = $this->title;
             
             <input type="submit" value="Iniciar Sesion" class="button">
             <p>¿Olvidaste la contraseña? <a class="link" href="recuperar.html">Recuperar</a></p>
-            <p>¿Aun no tienes una cuenta? <a class="link" href="registrarvista.html">Registrate</a></p>}
+            <p>¿Aun no tienes una cuenta? <a class="link" href="registrarvista.html">Registrate</a></p>
 </div>
     <?php ActiveForm::end(); ?>

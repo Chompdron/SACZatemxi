@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Role;
-use app\models\RoleSearch;
+use app\models\Empleado;
+use app\models\EmpleadoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * RoleController implements the CRUD actions for Role model.
+ * EmpleadoController implements the CRUD actions for Empleado model.
  */
-class RoleController extends Controller
+class EmpleadoController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class RoleController extends Controller
     }
 
     /**
-     * Lists all Role models.
+     * Lists all Empleado models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new RoleSearch();
+        $searchModel = new EmpleadoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class RoleController extends Controller
     }
 
     /**
-     * Displays a single Role model.
+     * Displays a single Empleado model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +58,16 @@ class RoleController extends Controller
     }
 
     /**
-     * Creates a new Role model.
+     * Creates a new Empleado model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Role();
+        $model = new Empleado();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->RoleID]);
+            return $this->redirect(['view', 'id' => $model->EmpleadoID]);
         }
 
         return $this->render('create', [
@@ -76,7 +76,7 @@ class RoleController extends Controller
     }
 
     /**
-     * Updates an existing Role model.
+     * Updates an existing Empleado model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +87,7 @@ class RoleController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->RoleID]);
+            return $this->redirect(['view', 'id' => $model->EmpleadoID]);
         }
 
         return $this->render('update', [
@@ -96,7 +96,7 @@ class RoleController extends Controller
     }
 
     /**
-     * Deletes an existing Role model.
+     * Deletes an existing Empleado model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class RoleController extends Controller
     }
 
     /**
-     * Finds the Role model based on its primary key value.
+     * Finds the Empleado model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Role the loaded model
+     * @return Empleado the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Role::findOne($id)) !== null) {
+        if (($model = Empleado::findOne($id)) !== null) {
             return $model;
         }
 
