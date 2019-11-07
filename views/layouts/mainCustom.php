@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => "Layout main custom",
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -38,19 +38,10 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Clientes', 'url' => ['/cliente/index']],
-            ['label' => 'Insumo', 'url' => ['/insumo/index']],
-            ['label' => 'Pedido', 'url' => ['/pedido/index']],
-            ['label' => 'Pedido Proveedor', 'url' => ['/pedido-prov/index']],
-            ['label' => 'Pedido proveedor lista', 'url' => ['/pedido-prov-lista/index']],
-            ['label' => 'Producto', 'url' => ['/producto/index']],
-            ['label' => 'Proveedor', 'url' => ['/proveedor/index']],
-            ['label' => 'Receta', 'url' => ['/receta/index']],
-            ['label' => 'Roles', 'url' => ['/role/index']],
-            ['label' => 'Unidad de Presentacion', 'url' => ['/unidad-presentacion/index']],
-            ['label' => 'Usuarios', 'url' => ['/users/index']],
-            ['label' => 'Venta', 'url' => ['/venta/index']],
-            ['label' => 'Venta Lista', 'url' => ['/venta-lista/index']],
+            ['label' => 'Tabla ajax', 'url' => ['/test/tablaajax']],
+            ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'About', 'url' => ['/site/about']],
+            ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
@@ -65,22 +56,14 @@ AppAsset::register($this);
             )
         ],
     ]);
-        
     NavBar::end();
     ?>
 
     <div class="container">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= Alert::widget() ?>
+        <?= Alert::widget() ?>        
         <?= $content ?>
     </div>
 </div>

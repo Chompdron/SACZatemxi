@@ -1,4 +1,6 @@
 <?php
+use kartik\mpdf\Pdf;
+
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -11,17 +13,23 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'modules' => [
+       'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ]
+    ],   
     'components' => [
+
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => '1',
+            'cookieValidationKey' => 'llave',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
             'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -42,8 +50,16 @@ $config = [
                 ],
             ],
         ],
+        'pdf' => [
+	        'class' => Pdf::classname(),
+	        'format' => Pdf::FORMAT_A4,
+	        'orientation' => Pdf::ORIENT_PORTRAIT,
+	        'destination' => Pdf::DEST_BROWSER,
+	        // refer settings section for all configuration options
+    	],
+
         'db' => $db,
-         'urlManager' => [
+        'urlManager' => [
 		    'class' => 'yii\web\UrlManager',
 		    // Disable index.php
 		    'showScriptName' => false,

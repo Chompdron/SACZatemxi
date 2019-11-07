@@ -10,9 +10,6 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
-
-use app\models\User;
-
 class SiteController extends Controller
 {
     /**
@@ -57,29 +54,6 @@ class SiteController extends Controller
         ];
     }
 
-    
-    /**
-     * WHAT
-     *
-     */
-    public function actionActive()
-    {
-        //$mUser = new User();
-        //$mUsers = User::find()->all();
-        
-        //$mUsers = User::find()->where(['username' => 'buscar']) -> all();
-        //$mUsers = User::findOne(1);
-        $mUser = new User();
-        $mUser -> username = "Eduardo" ;
-        $mUser -> password = "123" ;
-        $mUser -> auth_key = "autoks" ;
-        $mUser -> accesstoken = "acc" ;
-        
-        $mUser -> save() ;
-        
-        echo var_dump($mUser);
-    }
-
     /**
      * Displays homepage.
      *
@@ -87,27 +61,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-
-        if (Yii::$app->user->isGuest) {
-            return Yii::$app->response->redirect(['site/login']);
-        }
-
-       \Yii::$app->layout   = 'layout';
-        
-        
-        
-
-        return $this->render('index', []);
-    }
-
-    //mio
-    public function actionSaludo()
-    {
-        return $this->render('saludo');
-    }
-    public function actionClase()
-    {
-        return $this->render('saludo');
+        return $this->render('index');
     }
 
     /**
@@ -143,6 +97,7 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
     /**
      * Displays contact page.
      *
@@ -169,5 +124,16 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+
+    public function actionEjemplos()
+    {
+        $mUsuarios = \app\models\User::find()->orderBy('username')->all();
+        $cmbUsuarios = \yii\helpers\ArrayHelper::map($mUsuarios, 'id', 'username');
+
+        $model = new \app\models\User();
+
+        return $this->render('ejemplos',["cmbUsuarios" => $cmbUsuarios, "model"=>$model ]);
     }
 }
