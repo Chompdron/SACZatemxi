@@ -39,6 +39,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Clientes', 'url' => ['/cliente/index']],
+            ['label' => 'Empleado', 'url' => ['/empleado/index']],
             ['label' => 'Insumo', 'url' => ['/insumo/index']],
             ['label' => 'Pedido', 'url' => ['/pedido/index']],
             ['label' => 'Pedido Proveedor', 'url' => ['/pedido-prov/index']],
