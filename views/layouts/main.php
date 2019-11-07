@@ -9,9 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-
-
-    use yii\bootstrap\ActiveForm;
+use yii\bootstrap\ActiveForm;
 
 AppAsset::register($this);
 ?>
@@ -34,3 +32,5 @@ AppAsset::register($this);
 </html>
 
 <?php $this->endPage() ?>
+
+
