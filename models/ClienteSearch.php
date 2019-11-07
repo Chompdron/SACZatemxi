@@ -17,7 +17,7 @@ class ClienteSearch extends Cliente
     public function rules()
     {
         return [
-            [['ClienteID', 'TipoClienteID'], 'integer'],
+            [['ClienteID'], 'integer'],
             [['NombreComercial', 'RazonSocial', 'RFC', 'Direccion', 'Telefono', 'HorarioEntrega'], 'safe'],
         ];
     }
@@ -59,7 +59,6 @@ class ClienteSearch extends Cliente
         // grid filtering conditions
         $query->andFilterWhere([
             'ClienteID' => $this->ClienteID,
-            'TipoClienteID' => $this->TipoClienteID,
         ]);
 
         $query->andFilterWhere(['like', 'NombreComercial', $this->NombreComercial])

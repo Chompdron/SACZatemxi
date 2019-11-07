@@ -16,8 +16,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'RazonSocial')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'TipoClienteID')->textInput() ?>
-
     <?= $form->field($model, 'RFC')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'Direccion')->textInput(['maxlength' => true]) ?>
