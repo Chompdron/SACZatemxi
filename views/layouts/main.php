@@ -42,20 +42,47 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Clientes', 'url' => ['/cliente/index']],
-            ['label' => 'Empleado', 'url' => ['/empleado/index']],
-            ['label' => 'Insumo', 'url' => ['/insumo/index']],
-            ['label' => 'Pedido', 'url' => ['/pedido/index']],
-            ['label' => 'Pedido Proveedor', 'url' => ['/pedido-prov/index']],
-            ['label' => 'Pedido proveedor lista', 'url' => ['/pedido-prov-lista/index']],
             ['label' => 'Producto', 'url' => ['/producto/index']],
             ['label' => 'Proveedor', 'url' => ['/proveedor/index']],
-            ['label' => 'Receta', 'url' => ['/receta/index']],
-            ['label' => 'Roles', 'url' => ['/role/index']],
-            ['label' => 'Usuario Rol', 'url' => ['/user-role/index']],
-            ['label' => 'Unidad de Presentacion', 'url' => ['/unidad-presentacion/index']],
-            ['label' => 'Usuarios', 'url' => ['/users/index']],
-            ['label' => 'Venta', 'url' => ['/venta/index']],
-            ['label' => 'Venta Lista', 'url' => ['/venta-lista/index']],
+            ['label' => 'Recetas',
+                'items' => [
+                     '<li class="divider"></li>',
+                     '<li class="dropdown-header"></li>',
+                     ['label' => 'Insumo', 'url' => ['/insumo/index']],
+                     ['label' => 'Receta', 'url' => ['/receta/index']],
+                     ['label' => 'Unidad de Presentacion', 'url' => ['/unidad-presentacion/index']],
+                ],
+            ],
+            ['label' => 'Pedidos',
+                'items' => [
+                     '<li class="divider"></li>',
+                     '<li class="dropdown-header"></li>',
+                     ['label' => 'Pedido Proveedor', 'url' => ['/pedido-prov/index']],
+                     ['label' => 'Pedido proveedor lista', 'url' => ['/pedido-prov-lista/index']],
+                     
+                ],
+            ],
+            ['label' => 'Usuario',
+            'items' => [
+                 '<li class="divider"></li>',
+                 '<li class="dropdown-header"></li>',
+                 ['label' => 'Usuarios', 'url' => ['/users/index']],
+                 ['label' => 'Empleado', 'url' => ['/empleado/index']],
+                 ['label' => 'Roles', 'url' => ['/role/index']],
+                 ['label' => 'Usuario Rol', 'url' => ['/user-role/index']],
+            ],
+        ],
+            ['label' => 'Ventas',
+            'items' => [
+            '<li class="divider"></li>',
+                 '<li class="dropdown-header"></li>',
+                 ['label' => 'Venta', 'url' => ['/venta/index']],
+                 
+                 ['label' => 'venta-lista', 'url' => ['/venta-lista/index']],
+            ],
+        ],
+
+
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
@@ -76,11 +103,7 @@ AppAsset::register($this);
 
         <div class="container">
             <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+  
 
             <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
