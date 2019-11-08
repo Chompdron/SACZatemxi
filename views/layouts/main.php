@@ -55,6 +55,15 @@ AppAsset::register($this);
             ['label' => 'Unidad de Presentacion', 'url' => ['/unidad-presentacion/index']],
             ['label' => 'Usuarios', 'url' => ['/users/index']],
             ['label' => 'Venta', 'url' => ['/venta/index']],
+            [
+            'label' => 'Dropdown',
+            'items' => [
+                 ['label' => 'Level 1 - Dropdown A', 'url' => '#'],
+                 '<li class="divider"></li>',
+                 '<li class="dropdown-header">Dropdown Header</li>',
+                 ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
+            ],
+        ],
             ['label' => 'Venta Lista', 'url' => ['/venta-lista/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]

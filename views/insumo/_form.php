@@ -36,7 +36,11 @@ use kartik\select2\Select2;
         <?= $form->field($model, 'PrecioXUnidad')->textInput() ?>
     </div>
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+    </div>
+    
+    <div class="form-group">
+        <?= Html::a('Regresar',["index"], ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

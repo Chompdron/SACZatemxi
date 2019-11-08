@@ -165,4 +165,11 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+    
+    public function init()
+    {
+        Yii::$app->language = 'es';
+    }
+    
+    
 }
