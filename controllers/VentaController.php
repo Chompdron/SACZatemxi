@@ -8,6 +8,8 @@ use app\models\VentaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Producto;
+use app\models\VentaLista;
 
 /**
  * VentaController implements the CRUD actions for Venta model.
@@ -108,7 +110,7 @@ class VentaController extends Controller
 
         return $this->redirect(['index']);
     }
-
+    
     /**
      * Finds the Venta model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -124,4 +126,44 @@ class VentaController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+    
+    
+    /*Crear una venta de hasta 2 productos (por ahora jeje)*/
+    public function actionNuevaventa()
+    {
+        
+        $model = new Venta();
+        $prod1 = new VentaLista();
+        $prod2 = new VentaLista();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->VentaID]);
+        }
+
+        return $this->render('nuevaventa', [
+            'model' => $model,
+            'prod1' => $prod1,
+            'prod2' => $prod2,
+        ]);
+        
+        
+    }
+    
+    /*Para finalizar la venta*/
+    public function actionFinalizarventa()
+    {
+       
+        $model = new Venta();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->VentaID]);
+        }
+
+        return $this->render('finalizarventa', [
+            'model' => $model,
+        ]);
+        
+        
+    }
+    
 }
