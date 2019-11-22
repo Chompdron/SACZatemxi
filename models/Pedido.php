@@ -14,6 +14,8 @@ use Yii;
  * @property string $FechaFin
  * @property bool $Status
  * @property string $FechaStatusFin
+ *
+ * @property Producto $producto
  */
 class Pedido extends \yii\db\ActiveRecord
 {
@@ -36,6 +38,7 @@ class Pedido extends \yii\db\ActiveRecord
             [['UnidadXLote'], 'number'],
             [['FechaInicio', 'FechaFin', 'FechaStatusFin'], 'safe'],
             [['Status'], 'boolean'],
+            [['ProductoID'], 'exist', 'skipOnError' => true, 'targetClass' => Producto::className(), 'targetAttribute' => ['ProductoID' => 'ProductoID']],
         ];
     }
 
@@ -45,13 +48,21 @@ class Pedido extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'PedidoID' => 'Pedido ID',
-            'ProductoID' => 'Producto ID',
+            'PedidoID' => 'Pedido',
+            'ProductoID' => 'Producto',
             'UnidadXLote' => 'Unidad X Lote',
             'FechaInicio' => 'Fecha Inicio',
             'FechaFin' => 'Fecha Fin',
-            'Status' => 'Status',
-            'FechaStatusFin' => 'Fecha Status Fin',
+            'Status' => 'Estatus',
+            'FechaStatusFin' => 'Fecha Estatus Fin',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProducto()
+    {
+        return $this->hasOne(Producto::className(), ['ProductoID' => 'ProductoID']);
     }
 }

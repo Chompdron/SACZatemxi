@@ -35,13 +35,21 @@ $this->params['breadcrumbs'][] = $this->title;
                         '<a href="'.Url::to(['/cliente/view','id'=>$model->PedidoID]).'"  data-pjax="0">'." Ver".'</a>';
               }
             ],
+            [ 'attribute' => 'ProductoID',
+                'format'=>'raw',
+              'value'=>function($model){
+                
+                return  $model->producto->Nombre ;
+              }
+            ],
+
             
             'PedidoID',
-            'ProductoID',
             'UnidadXLote',
             'FechaInicio',
             'FechaFin',
 
+            'FechaStatusFin',
             //['class' => 'yii\grid\ActionColumn'],
         ],
         'resizableColumns'=>true,
