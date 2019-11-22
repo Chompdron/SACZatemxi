@@ -128,22 +128,46 @@ class VentaController extends Controller
     }
     
     
-    /*Crear una venta de hasta 2 productos (por ahora jeje)*/
+    /*Crear una venta*/
     public function actionNuevaventa()
     {
-        
-        $model = new Venta();
-        $prod1 = new VentaLista();
-        $prod2 = new VentaLista();
+        if(isset($_SESSION["detv"])){}else{
+        $_SESSION["detv"] = array();
+        }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->VentaID]);
+        $venta = new Venta();
+        $_SESSION["venta"] = $venta;
+
+        if ($venta->load(Yii::$app->request->post())) {
+            //$_SESSION["venta"]->save();
+            $_SESSION["venta"] = new Venta();
+            return $this->redirect(['agregarprod', 'model' => $_SESSION["detv"]]);
         }
 
         return $this->render('nuevaventa', [
+            'model' => $_SESSION["venta"],
+            'detv' => $_SESSION["detv"],
+        ]);
+        
+        
+    }
+    
+    /*Agregar un producto*/
+    public function actionAgregarprod()
+    {
+        
+        $model = new Venta();
+        $detv = new VentaLista();
+
+        if ($detv->load(Yii::$app->request->post())) {
+            //$_SESSION["venta"]->save();
+            array_push($_SESSION["detv"],$detv);
+            return $this->redirect(['nuevaventa']);
+        }
+        
+        return $this->render('agregarprod', [
             'model' => $model,
-            'prod1' => $prod1,
-            'prod2' => $prod2,
+            'detv' => $detv,
         ]);
         
         
@@ -156,6 +180,7 @@ class VentaController extends Controller
         $model = new Venta();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            //session_unset($_SESSION["venta"]);
             return $this->redirect(['view', 'id' => $model->VentaID]);
         }
 
