@@ -37,8 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
               }
             ],
             
-        
-
 
            'InsumoID',
            'Descripcion',

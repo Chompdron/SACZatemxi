@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                 return  Html::a("Actualizar",['/user-role/update','id'=>$model->id],["options"=>["data-pjax"=>"0"]]).
                         '<a href="'.Url::to(['/user-role/view','id'=>$model->id]).'"  data-pjax="0">'." Ver".'</a>';
+
               }
             ],
             

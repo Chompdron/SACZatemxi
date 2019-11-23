@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                 return  Html::a("Actualizar",['/pedido-prov-lista/update','id'=>$model->PedidoProvListaID],["options"=>["data-pjax"=>"0"]]).
                         '<a href="'.Url::to(['/pedido-prov-lista/view','id'=>$model->PedidoProvListaID]).'"  data-pjax="0">'." Ver".'</a>';
+
               }
             ],
             

@@ -17,11 +17,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Venta', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Nueva Venta', ['nuevaventa'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-<?= GridView::widget([
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -30,14 +30,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'raw',
               'value'=>function($model){
                 
+
                 return  Html::a("Actualizar",['/venta/update','id'=>$model->VentaID],["options"=>["data-pjax"=>"0"]]).
                         '<a href="'.Url::to(['/venta/view','id'=>$model->VentaID]).'"  data-pjax="0">'." Ver".'</a>';
+
               }
             ],
             
             'VentaID',
             'Fecha',
             'Total',
+
             'Descuento',
             [ 'attribute' => 'ClienteID',
                 'format'=>'raw',

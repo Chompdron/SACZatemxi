@@ -54,12 +54,13 @@ AppAsset::register($this);
                 'items' => [
                      '<li class="divider"></li>',
                      '<li class="dropdown-header"></li>',
+
                      ['label' => 'Pedido Proveedor', 'url' => ['/pedido-prov/index']],
                      ['label' => 'Pedido proveedor lista', 'url' => ['/pedido-prov-lista/index']],
                      ['label' => 'Pedido producción', 'url' => ['/pedido-produccion/index']],
                      
                 ],
-            ],  
+            ],
             ['label' => 'Usuario',
             'items' => [
                  '<li class="divider"></li>',
@@ -79,7 +80,16 @@ AppAsset::register($this);
                  ['label' => 'venta-lista', 'url' => ['/venta-lista/index']],
             ],
         ],
-            Yii::$app->user->isGuest ? (
+
+         ['label' => 'Reportes',
+            'items' => [
+            '<li class="divider"></li>',
+                 '<li class="dropdown-header"></li>',
+                 ['label' => 'Reporte de Ventas', 'url' => ['/reporte/index']],
+            ],
+        ],
+
+  Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'

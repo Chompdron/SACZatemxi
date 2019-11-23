@@ -8,6 +8,8 @@ use app\models\VentaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Producto;
+use app\models\VentaLista;
 
 /**
  * VentaController implements the CRUD actions for Venta model.
@@ -108,7 +110,7 @@ class VentaController extends Controller
 
         return $this->redirect(['index']);
     }
-
+    
     /**
      * Finds the Venta model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -124,4 +126,69 @@ class VentaController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+    
+    
+    /*Crear una venta*/
+    public function actionNuevaventa()
+    {
+        if(isset($_SESSION["detv"])){}else{
+        $_SESSION["detv"] = array();
+        }
+
+        $venta = new Venta();
+        $_SESSION["venta"] = $venta;
+
+        if ($venta->load(Yii::$app->request->post())) {
+            //$_SESSION["venta"]->save();
+            $_SESSION["venta"] = new Venta();
+            return $this->redirect(['agregarprod', 'model' => $_SESSION["detv"]]);
+        }
+
+        return $this->render('nuevaventa', [
+            'model' => $_SESSION["venta"],
+            'detv' => $_SESSION["detv"],
+        ]);
+        
+        
+    }
+    
+    /*Agregar un producto*/
+    public function actionAgregarprod()
+    {
+        
+        $model = new Venta();
+        $detv = new VentaLista();
+
+        if ($detv->load(Yii::$app->request->post())) {
+            //$_SESSION["venta"]->save();
+            array_push($_SESSION["detv"],$detv);
+            return $this->redirect(['nuevaventa']);
+        }
+        
+        return $this->render('agregarprod', [
+            'model' => $model,
+            'detv' => $detv,
+        ]);
+        
+        
+    }
+    
+    /*Para finalizar la venta*/
+    public function actionFinalizarventa()
+    {
+       
+        $model = new Venta();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            //session_unset($_SESSION["venta"]);
+            return $this->redirect(['view', 'id' => $model->VentaID]);
+        }
+
+        return $this->render('finalizarventa', [
+            'model' => $model,
+        ]);
+        
+        
+    }
+    
 }

@@ -8,7 +8,7 @@ use app\models\ProductoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\PedidoSearch;
 /**
  * ProductoController implements the CRUD actions for Producto model.
  */
@@ -39,6 +39,40 @@ class ProductoController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+        public function actionBitacora($id)
+    {
+        /** $searchModel = new ProductoSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('bitacora', [
+            'model' => $this->findModel($id),
+            'dataProvider' => $dataProvider,
+        ]); */
+            
+        /**$model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->ProductoID]);
+        }
+
+        return $this->render('bitacora', [
+            'model' => $model,
+        ]);*/
+        $model = $this->findModel($id);
+        
+        $searchModel = new PedidoSearch();
+        $searchModel->ProductoID = $id;
+        $dataProvider =  $searchModel->search(Yii::$app->request->queryParams);
+        /*$searchModel->ProductoID = $id;*/
+        // $dataProvider = $searchModel;
+
+        return $this->render('bitacora', [
+            'model'=>$model,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
