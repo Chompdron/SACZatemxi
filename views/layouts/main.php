@@ -57,6 +57,7 @@ AppAsset::register($this);
                 'items' => [
                      '<li class="divider"></li>',
                      '<li class="dropdown-header"></li>',
+                     ['label' => 'Pedido', 'url' => ['/pedido/index']],
                      ['label' => 'Pedido Proveedor', 'url' => ['/pedido-prov/index']],
                      ['label' => 'Pedido proveedor lista', 'url' => ['/pedido-prov-lista/index']],
                      
@@ -79,6 +80,14 @@ AppAsset::register($this);
                  ['label' => 'Venta', 'url' => ['/venta/index']],
                  
                  ['label' => 'venta-lista', 'url' => ['/venta-lista/index']],
+            ],
+        ],
+
+         ['label' => 'Reportes',
+            'items' => [
+            '<li class="divider"></li>',
+                 '<li class="dropdown-header"></li>',
+                 ['label' => 'Reporte de Ventas', 'url' => ['/reporte/index']],
             ],
         ],
 
