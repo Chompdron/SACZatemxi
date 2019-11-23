@@ -39,7 +39,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'Fecha',
             'Total',
             'Descuento',
-            'ClienteID',
+            [ 'attribute' => 'ClienteID',
+                'format'=>'raw',
+              'value'=>function($model){
+                
+                $cliente = $model->cliente;
+                  
+                return $cliente->NombreComercial;
+              }
+            ],
 
 
             //['class' => 'yii\grid\ActionColumn'],
