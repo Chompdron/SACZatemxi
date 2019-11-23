@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use yii\helpers\Url;
+use kartik\grid\GridView; 
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\EmpleadoSearch */
@@ -20,20 +21,51 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
+    
+        
+<?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
+            //['class' => 'yii\grid\SerialColumn'],
+            [ 'attribute' => 'clave',
+                'format'=>'raw',
+              'value'=>function($model){
+                
+                return  Html::a("Actualizar",['/empleado/update','id'=>$model->EmpleadoID],["options"=>["data-pjax"=>"0"]]).
+                        '<a href="'.Url::to(['/empleado/view','id'=>$model->EmpleadoID]).'"  data-pjax="0">'." Ver".'</a>';
+              }
+         ],
             'EmpleadoID',
             'HorasxSem',
             'PagoxHrs',
-            'UserID',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [ 'attribute' => 'UserID',
+                'format'=>'raw',
+              'value'=>function($model){
+                
+                $user = $model->user;
+                  
+                return $user->username;
+              }
+            ],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
+        'resizableColumns'=>true,
+        'pjax'=>true,
+        'pjaxSettings'=>[
+                            'neverTimeout'=>true,
+                        ],
+        'panel' => [
+                            'type' =>\kartik\grid\GridView::TYPE_DEFAULT,
+                            'footer'=>true,
+                        ],
+        'toolbar'=>[
+                            '{export}'
+                        ],
+        'tableOptions'=>['class'=>'tbl_custom']
+
     ]); ?>
 
+   
 
 </div>

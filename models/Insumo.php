@@ -49,4 +49,12 @@ class Insumo extends \yii\db\ActiveRecord
             'PrecioXUnidad' => 'Precio X Unidad',
         ];
     }
+
+       /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getUnidadPresentacion(){
+        return $this->hasOne(Unidadpresentacion::className(),['UnidadPresentacionID'=>'UnidadPresentacionID'])->one();;  
+      }
+
 }

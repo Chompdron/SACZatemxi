@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use yii\helpers\Url;
+use kartik\grid\GridView; 
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\VentaSearch */
@@ -19,22 +21,43 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <?= GridView::widget([
+<?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
+            //['class' => 'yii\grid\SerialColumn'],
+            [ 'attribute' => 'clave',
+                'format'=>'raw',
+              'value'=>function($model){
+                
+                return  Html::a("Actualizar",['/venta/update','id'=>$model->VentaID],["options"=>["data-pjax"=>"0"]]).
+                        '<a href="'.Url::to(['/venta/view','id'=>$model->VentaID]).'"  data-pjax="0">'." Ver".'</a>';
+              }
+            ],
+            
             'VentaID',
             'Fecha',
             'Total',
             'Descuento',
             'ClienteID',
 
-            ['class' => 'yii\grid\ActionColumn'],
+
+            //['class' => 'yii\grid\ActionColumn'],
         ],
+        'resizableColumns'=>true,
+        'pjax'=>true,
+        'pjaxSettings'=>[
+                            'neverTimeout'=>true,
+                        ],
+        'panel' => [
+                            'type' =>\kartik\grid\GridView::TYPE_DEFAULT,
+                            'footer'=>true,
+                        ],
+        'toolbar'=>[
+                            '{export}'
+                        ],
+        'tableOptions'=>['class'=>'tbl_custom']
+
     ]); ?>
-
-
+    
 </div>

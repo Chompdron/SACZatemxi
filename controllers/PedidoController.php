@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Pedido;
+use app\models\Insumo;
 use app\models\PedidoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -66,7 +67,13 @@ class PedidoController extends Controller
     {
         $model = new Pedido();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) ) {
+            $receta = $model->getInsumos();
+            foreach($receta as $r){
+                $insumo = Insumo->findModel($r->'InsumoID');
+                $insumo->Stock -= $r->Cantidad;
+            }
+            $model->save()
             return $this->redirect(['view', 'id' => $model->PedidoID]);
         }
 
@@ -74,6 +81,8 @@ class PedidoController extends Controller
             'model' => $model,
         ]);
     }
+
+     
 
     /**
      * Updates an existing Pedido model.
@@ -92,6 +101,29 @@ class PedidoController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+        ]);
+    }
+
+    public function actionFinalizar($id)
+    {
+        $model = $this->findModel($id);
+        $model->FechaStatusFin = date('Y-m-d');
+        $model->Status = false;
+        $producto = $model->getProducto();
+        $producto->Stock+= $model->UnidadXLote;
+        $producto->save();
+        $model->save();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->PedidoID]);
+        }
+
+        $searchModel = new PedidoSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
