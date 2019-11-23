@@ -29,8 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'raw',
               'value'=>function($model){
                 
-                return  Html::a("Actualizar",['/cliente/update','id'=>$model->id],["options"=>["data-pjax"=>"0"]]).
-                        '<a href="'.Url::to(['/cliente/view','id'=>$model->id]).'"  data-pjax="0">'." Ver".'</a>';
+                return  Html::a("Actualizar",['/users/update','id'=>$model->id],["options"=>["data-pjax"=>"0"]]).
+                        '<a href="'.Url::to(['/users/view','id'=>$model->id]).'"  data-pjax="0">'." Ver".'</a>';
               }
             ],
             

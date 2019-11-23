@@ -31,8 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'raw',
               'value'=>function($model){
                 
-                return  Html::a("Actualizar",['/cliente/update','id'=>$model->PedidoID],["options"=>["data-pjax"=>"0"]]).
-                        '<a href="'.Url::to(['/cliente/view','id'=>$model->PedidoID]).'"  data-pjax="0">'." Ver".'</a>';
+
+                return  Html::a("Actualizar",['/pedido/update','id'=>$model->PedidoID],["options"=>["data-pjax"=>"0"]]).
+                        '<a href="'.Url::to(['/pedido/view','id'=>$model->PedidoID]).'"  data-pjax="0">'." Ver".'</a>'.
+                        '<a href="'.Url::to(['/pedido/finalizar','id'=>$model->PedidoID]).'"  data-pjax="0">'." Finalizar".'</a>';
               }
             ],
             [ 'attribute' => 'ProductoID',
@@ -42,14 +44,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 return  $model->producto->Nombre ;
               }
             ],
-
             
             'PedidoID',
             'UnidadXLote',
             'FechaInicio',
             'FechaFin',
-
-            'FechaStatusFin',
             //['class' => 'yii\grid\ActionColumn'],
         ],
         'resizableColumns'=>true,

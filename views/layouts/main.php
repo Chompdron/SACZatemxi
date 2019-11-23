@@ -54,9 +54,10 @@ AppAsset::register($this);
                 'items' => [
                      '<li class="divider"></li>',
                      '<li class="dropdown-header"></li>',
-                     ['label' => 'Pedido', 'url' => ['/pedido/index']],
+
                      ['label' => 'Pedido Proveedor', 'url' => ['/pedido-prov/index']],
                      ['label' => 'Pedido proveedor lista', 'url' => ['/pedido-prov-lista/index']],
+                     ['label' => 'Pedido producción', 'url' => ['/pedido-produccion/index']],
                      
                 ],
             ],

@@ -49,4 +49,8 @@ class Venta extends \yii\db\ActiveRecord
             'ClienteID' => 'Cliente ID',
         ];
     }
+
+    public function getCliente(){
+        return $this->hasOne(Cliente::className(),['ClienteID'=>'ClienteID'])->one();  
+    }
 }

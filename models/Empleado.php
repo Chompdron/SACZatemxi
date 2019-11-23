@@ -46,4 +46,12 @@ class Empleado extends \yii\db\ActiveRecord
             'UserID' => 'User ID',
         ];
     }
+
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getUser(){
+        return $this->hasOne(User::className(),['id'=>'UserID']);  
+      }
+
 }

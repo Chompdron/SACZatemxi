@@ -28,9 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
             [ 'attribute' => 'clave',
                 'format'=>'raw',
               'value'=>function($model){
-                
-                return  Html::a("Actualizar",['/cliente/update','id'=>$model->DetVentaID],["options"=>["data-pjax"=>"0"]]).
-                        '<a href="'.Url::to(['/cliente/view','id'=>$model->DetVentaID]).'"  data-pjax="0">'." Ver".'</a>';
+    
+                return  Html::a("Actualizar",['/venta-lista/update','id'=>$model->DetVentaID],["options"=>["data-pjax"=>"0"]]).
+                        '<a href="'.Url::to(['/venta-lista/view','id'=>$model->DetVentaID]).'"  data-pjax="0">'." Ver".'</a>';
+
               }
             ],
             

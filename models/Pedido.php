@@ -58,11 +58,16 @@ class Pedido extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProducto()
-    {
-        return $this->hasOne(Producto::className(), ['ProductoID' => 'ProductoID']);
+      /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getProducto(){
+        return $this->hasOne(Producto::className(),['ProductoID'=>'ProductoID'])->one();  
+      }
+
+    public function getInsumos(){
+        $producto = $this->hasOne(Producto::className(),['ProductoID'=>'ProductoID'])->one(); 
+        return $receta = $this->hasOne(Receta::className(),['ProductoID'=>'ProductoID'])->all();
+        
     }
 }

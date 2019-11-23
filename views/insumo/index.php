@@ -37,11 +37,20 @@ $this->params['breadcrumbs'][] = $this->title;
               }
             ],
             
-             'InsumoID',
-            'Descripcion',
-            'UnidadPresentacionID',
-            'Stock',
-            'PrecioXUnidad',
+
+           'InsumoID',
+           'Descripcion',
+           [ 'attribute' => 'UnidadPresentacionID',
+           'format'=>'raw',
+         'value'=>function($model){
+           
+           $UnidadPresentacion = $model->UnidadPresentacion;
+             
+           return $UnidadPresentacion->Nombre;
+         }
+       ],
+           'Stock',
+           'PrecioXUnidad',
 
             //['class' => 'yii\grid\ActionColumn'],
         ],
