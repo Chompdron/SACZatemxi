@@ -17,7 +17,7 @@ class InsumoSearch extends Insumo
     public function rules()
     {
         return [
-            [['InsumoID', 'UnidadPresentacionID'], 'integer'],
+            [['InsumoID', 'UnidadPresentacionID', 'ProveedorID'], 'integer'],
             [['Descripcion'], 'safe'],
             [['Stock', 'PrecioXUnidad'], 'number'],
         ];
@@ -63,6 +63,7 @@ class InsumoSearch extends Insumo
             'UnidadPresentacionID' => $this->UnidadPresentacionID,
             'Stock' => $this->Stock,
             'PrecioXUnidad' => $this->PrecioXUnidad,
+            'ProveedorID' => $this->ProveedorID,
         ]);
 
         $query->andFilterWhere(['like', 'Descripcion', $this->Descripcion]);

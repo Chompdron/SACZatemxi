@@ -1,3 +1,4 @@
+
 CREATE TABLE Role(
 	RoleID int AUTO_INCREMENT primary key not null,
 	Nombre varchar(256) not null
@@ -130,3 +131,6 @@ CREATE TABLE VentaLista (
     PrecioVenta float  NOT NULL
 );
 
+
+ALTER TABLE insumo add column ProveedorID after PrecioXUnidad,
+ALTER TABLE insumo FOREIGN KEY (ProveedorID) REFERENCES Proveedor(ProveedorID)
