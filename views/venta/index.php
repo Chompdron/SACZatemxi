@@ -31,8 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'value'=>function($model){
                 
 
-                return  Html::a("Actualizar",['/venta/update','id'=>$model->VentaID],["options"=>["data-pjax"=>"0"]]).
-                        '<a href="'.Url::to(['/venta/view','id'=>$model->VentaID]).'"  data-pjax="0">'." Ver".'</a>';
+                return  Html::a("TICKET",['/venta/view','id'=>$model->VentaID],["options"=>["data-pjax"=>"0"]]);
 
               }
             ],
@@ -41,7 +40,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'Fecha',
             'Total',
 
-            'Descuento',
             [ 'attribute' => 'ClienteID',
                 'format'=>'raw',
               'value'=>function($model){

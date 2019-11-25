@@ -166,8 +166,14 @@ class VentaController extends Controller
         $permiso = 0; 
         $nump= -1;
         if ($detv->load(Yii::$app->request->post())) {
-            //Sumar cantidad si se quiere agregar algo que ya está
+            
+            
+            $ProdCompra = Producto::findone($detv->ProductoID);
+            if($ProdCompra->Stock >= $detv->Cantidad){
+                {
+                //Sumar cantidad si se quiere agregar algo que ya está
             foreach ($_SESSION["detv"] as $detallev) {
+                
                 $nump+=1;
                 if($detallev->ProductoID == $detv->ProductoID){
                     $detallev->Cantidad += $detv->Cantidad;
@@ -187,6 +193,12 @@ class VentaController extends Controller
             
             array_push($_SESSION["detv"],$detv);   
             }
+                
+            }
+            }else{return $this->redirect(['nuevaventa']);}
+            
+            
+            
             return $this->redirect(['nuevaventa']);
         }
         
@@ -201,16 +213,24 @@ class VentaController extends Controller
     /*Para finalizar la venta*/
     public function actionFinalizarventa()
     {
-       
-        $model = new Venta();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if (Yii::$app->request->post()) {
             //session_unset($_SESSION["venta"]);
-            return $this->redirect(['view', 'id' => $model->VentaID]);
+            $_SESSION["venta"]->save();
+            foreach ($_SESSION["detv"] as $detallev) {
+                $detallev->VentaID=$_SESSION["venta"]->VentaID;
+                $detallev->save();
+                
+                $ProdCompra = Producto::findone($detallev->ProductoID);
+                $ProdCompra->Stock -= $detallev->Cantidad;
+                $ProdCompra->Save();
+                
+            }
+            
+            return $this->redirect(['view', 'id' => $_SESSION["venta"]->VentaID]);
         }
 
         return $this->render('finalizarventa', [
-            'model' => $model,
+            'model' => $_SESSION["venta"],
         ]);
         
         

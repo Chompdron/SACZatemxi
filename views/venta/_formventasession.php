@@ -41,7 +41,6 @@ $form = ActiveForm::begin(); ?>
 
 <? ActiveForm::end(); ?>
 
-<p>Aquí iría el tickeddddddddddt de mientras</p>
 
 <table class="table table-striped">
     <thead>
