@@ -41,7 +41,11 @@ $form = ActiveForm::begin(); ?>
     <? ActiveForm::end(); ?> 
         
     <p>Aquí iría el ticket de mientras</p>
-     <?= var_dump($_SESSION["detv"]); ?>
+     <?
+    foreach ($_SESSION["detv"] as $valor) {
+    var_dump($valor);
+    }?>
+    
      
          
     <div class="col-md-4">
