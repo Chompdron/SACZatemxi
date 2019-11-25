@@ -163,12 +163,30 @@ class VentaController extends Controller
         
         $model = new Venta();
         $detv = new VentaLista();
-
+        $permiso = 0; 
+        $nump= -1;
         if ($detv->load(Yii::$app->request->post())) {
-            //$_SESSION["venta"]->save();
-            $detv->PrecioVenta=0;
+            //Sumar cantidad si se quiere agregar algo que ya está
+            foreach ($_SESSION["detv"] as $detallev) {
+                $nump+=1;
+                if($detallev->ProductoID == $detv->ProductoID){
+                    $detallev->Cantidad += $detv->Cantidad;
+                    $permiso = 1;
+                    if($detallev->Cantidad <= 0){
+                        unset($_SESSION["detv"][$nump]);
+                    }
+                }
+            }
             
-            array_push($_SESSION["detv"],$detv);
+            if($permiso == 0){
+             
+            //$_SESSION["venta"]->save();
+            //Conseguir el precio
+            $ProdCompra = Producto::findone($detv->ProductoID);
+            $detv->PrecioVenta=$ProdCompra->Precio;
+            
+            array_push($_SESSION["detv"],$detv);   
+            }
             return $this->redirect(['nuevaventa']);
         }
         
