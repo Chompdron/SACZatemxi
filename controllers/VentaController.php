@@ -37,6 +37,8 @@ class VentaController extends Controller
      */
     public function actionIndex()
     {
+        unset($_SESSION["venta"]);
+        unset($_SESSION["detv"]);
         $searchModel = new VentaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -131,26 +133,29 @@ class VentaController extends Controller
     /*Crear una venta*/
     public function actionNuevaventa()
     {
+        //Para que no se reemplazen los detalles de venta cada vez que carga
         if(isset($_SESSION["detv"])){}else{
         $_SESSION["detv"] = array();
         }
 
         $venta = new Venta();
-        $_SESSION["venta"] = $venta;
+        //$_SESSION["venta"] = $venta;
 
         if ($venta->load(Yii::$app->request->post())) {
             //$_SESSION["venta"]->save();
-            $_SESSION["venta"] = new Venta();
+            $_SESSION["venta"] = $venta;
             return $this->redirect(['agregarprod', 'model' => $_SESSION["detv"]]);
         }
 
         return $this->render('nuevaventa', [
-            'model' => $_SESSION["venta"],
+            'model' => $venta,
             'detv' => $_SESSION["detv"],
         ]);
         
         
     }
+
+
     
     /*Agregar un producto*/
     public function actionAgregarprod()
@@ -161,6 +166,7 @@ class VentaController extends Controller
 
         if ($detv->load(Yii::$app->request->post())) {
             //$_SESSION["venta"]->save();
+            $detv->PrecioVenta=0;
             array_push($_SESSION["detv"],$detv);
             return $this->redirect(['nuevaventa']);
         }
