@@ -7,7 +7,7 @@ use kartik\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Producto */
 
-$this->title = 'Bitácora del Producto: ' . $model->ProductoID;
+$this->title = 'Bitácora del Producto: ' . $model->InsumoID;
 
         /* $mProducto = \app\models\Producto::find()->orderBy('Nombre')->all();
         $cmbProducto = \yii\helpers\ArrayHelper::map($mProducto, 'ProductoID', 'Nombre');
@@ -16,29 +16,24 @@ $model
 
 ?>
 <div class="producto-bitacora">
-
-<h1>Bitácora de entradas</h1>
-    
+    <h1>Bitácora de entradas</h1>
 <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
           
-            [ 'attribute' => 'ProductoID',
+            [ 'attribute' => 'InsumoID',
                 'format'=>'raw',
               'value'=>function($model){
                 
-                return  $model->producto->Nombre ;
+                return  $model->Nombre ;
               }
             ],
 
             
-            'PedidoID',
-            'UnidadXLote',
-            //'FechaInicio',
-            //'FechaFin',
+            'Cantidad',
+            'Fecha',
 
-            'FechaStatusFin',
             //['class' => 'yii\grid\ActionColumn'],
         ],
         'resizableColumns'=>true,
@@ -57,9 +52,8 @@ $model
 
     ]); ?>
 
-</div>
-
-<div class="form-group">
+</div>    
+    <div class="form-group">
         <?= Html::a('Regresar',["index"], ['class' => 'btn btn-success']) ?>
     </div>
 
