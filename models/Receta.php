@@ -46,4 +46,10 @@ class Receta extends \yii\db\ActiveRecord
             'Cantidad' => 'Cantidad',
         ];
     }
+    public function getProducto(){
+        return $this->hasOne(Producto::className(),['ProductoID'=>'ProductoID'])->one();  
+      }
+    public function getInsumo(){
+        return $this->hasOne(Insumo::className(),['InsumoID'=>'InsumoID'])->one();
+      }
 }

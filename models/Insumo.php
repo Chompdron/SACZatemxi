@@ -54,10 +54,10 @@ class Insumo extends \yii\db\ActiveRecord
     * @return \yii\db\ActiveQuery
     */
     public function getUnidadPresentacion(){
-        return $this->hasOne(Unidadpresentacion::className(),['UnidadPresentacionID'=>'UnidadPresentacionID'])->one();;  
+        return $this->hasOne(Unidadpresentacion::className(),['UnidadPresentacionID'=>'UnidadPresentacionID'])->one(); 
       }
     
     public function getProveedor(){
-        return $this->hasOne(Proveedor::className(),['ProveedorID'=>'ProveedorID'])->one();;  
+        return $this->hasOne(Proveedor::className(),['ProveedorID'=>'ProveedorID'])->one();
       }
 }

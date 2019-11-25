@@ -5,6 +5,8 @@ namespace app\controllers;
 use Yii;
 use app\models\Receta;
 use app\models\RecetaSearch;
+use app\models\Producto;
+use app\models\ProductoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +37,7 @@ class RecetaController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new RecetaSearch();
+        $searchModel = new ProductoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -123,5 +125,17 @@ class RecetaController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    
+        public function actionRecetario($id)
+    {
+        $searchModel = new RecetaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->Where('ProductoID = '.$id);
+        return $this->render('recetario', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'id'=>$id,
+        ]);
     }
 }

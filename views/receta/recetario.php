@@ -4,18 +4,23 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use kartik\grid\GridView; 
 
-
+use app\models\Producto;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ProductoSearch */
+/* @var $searchModel app\models\RecetaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Seleccione el Producto para ver su Receta';
+
+$Producto = Producto::findone($id);
+$this->title = 'Receta de '.$Producto->Nombre;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="producto-index">
+<div class="receta-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <p>
+        <?= Html::a('Agregar Ingrediente', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <?= GridView::widget([
@@ -27,10 +32,29 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'raw',
               'value'=>function($model){
                 
-                return  Html::a("Ver Receta",['/receta/recetario','id'=>$model->ProductoID],["options"=>["data-pjax"=>"0"]]);
+                return  Html::a("Actualizar",['/receta/update','id'=>$model->RecetaID],["options"=>["data-pjax"=>"0"]]);
               }
             ],
-            'Nombre',
+            [ 'attribute' => 'ProductoID',
+           'format'=>'raw',
+         'value'=>function($model){
+           
+           $Producto = $model->Producto;
+             
+           return $Producto->Nombre;
+         }
+       ],
+            [ 'attribute' => 'InsumoID',
+           'format'=>'raw',
+         'value'=>function($model){
+           
+           $Insumo = $model->Insumo;
+             
+           return $Insumo->Descripcion;
+         }
+       ],
+            'Cantidad',
+
 
             //['class' => 'yii\grid\ActionColumn'],
         ],
@@ -49,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'tableOptions'=>['class'=>'tbl_custom']
 
     ]); ?>
-   
+    
 
 
 </div>
