@@ -167,6 +167,7 @@ class VentaController extends Controller
         if ($detv->load(Yii::$app->request->post())) {
             //$_SESSION["venta"]->save();
             $detv->PrecioVenta=0;
+            
             array_push($_SESSION["detv"],$detv);
             return $this->redirect(['nuevaventa']);
         }
