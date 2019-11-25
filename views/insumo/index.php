@@ -1,13 +1,10 @@
 <?php
-
 use yii\helpers\Html;
 use yii\helpers\Url;
 use kartik\grid\GridView; 
-
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\InsumoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
 $this->title = 'Insumos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -37,7 +34,6 @@ $this->params['breadcrumbs'][] = $this->title;
               }
             ],
             
-
            'InsumoID',
            'Descripcion',
            [ 'attribute' => 'UnidadPresentacionID',
@@ -51,7 +47,15 @@ $this->params['breadcrumbs'][] = $this->title;
        ],
            'Stock',
            'PrecioXUnidad',
-
+            [ 'attribute' => 'ProveedorID',
+           'format'=>'raw',
+         'value'=>function($model){
+           
+           $Proveedor = $model->Proveedor;
+             
+           return $Proveedor->NombreComercial;
+         }
+       ],
             //['class' => 'yii\grid\ActionColumn'],
         ],
         'resizableColumns'=>true,
@@ -67,7 +71,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             '{export}'
                         ],
         'tableOptions'=>['class'=>'tbl_custom']
-
     ]); ?>
     
    

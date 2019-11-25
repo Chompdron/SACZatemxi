@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Borrar', ['delete', 'id' => $model->InsumoID], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => '¿Estás seguro que deseas borrarlo?',
+                'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'UnidadPresentacionID',
             'Stock',
             'PrecioXUnidad',
+            'ProveedorID',
         ],
     ]) ?>
 

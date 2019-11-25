@@ -12,6 +12,7 @@ use Yii;
  * @property int $UnidadPresentacionID
  * @property double $Stock
  * @property double $PrecioXUnidad
+ * @property int $ProveedorID
  */
 class Insumo extends \yii\db\ActiveRecord
 {
@@ -30,9 +31,8 @@ class Insumo extends \yii\db\ActiveRecord
     {
         return [
             [['Descripcion', 'UnidadPresentacionID', 'Stock', 'PrecioXUnidad'], 'required'],
-            [['UnidadPresentacionID'], 'integer'],
             [['Stock', 'PrecioXUnidad'], 'number'],
-            [['Descripcion'], 'string', 'max' => 255],
+            [['Descripcion','UnidadPresentacionID', 'ProveedorID'], 'string', 'max' => 255],
         ];
     }
 
@@ -43,18 +43,21 @@ class Insumo extends \yii\db\ActiveRecord
     {
         return [
             'InsumoID' => 'Insumo ID',
-            'Descripcion' => 'Descripcion',
-            'UnidadPresentacionID' => 'Unidad Presentacion ID',
+            'Descripcion' => 'Descripción',
+            'UnidadPresentacionID' => 'Unidad de Presentacion',
             'Stock' => 'Stock',
             'PrecioXUnidad' => 'Precio X Unidad',
+            'ProveedorID' => 'Proveedor ID',
         ];
     }
-
        /**
     * @return \yii\db\ActiveQuery
     */
     public function getUnidadPresentacion(){
-        return $this->hasOne(Unidadpresentacion::className(),['UnidadPresentacionID'=>'UnidadPresentacionID'])->one();;  
+        return $this->hasOne(Unidadpresentacion::className(),['UnidadPresentacionID'=>'UnidadPresentacionID'])->one(); 
       }
-
+    
+    public function getProveedor(){
+        return $this->hasOne(Proveedor::className(),['ProveedorID'=>'ProveedorID'])->one();
+      }
 }
