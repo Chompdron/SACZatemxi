@@ -15,6 +15,7 @@ use app\models\Cliente;
     $cmbCliente = \yii\helpers\ArrayHelper::map($mCliente, 'ClienteID', 'NombreComercial');
 ?>
 
+<?php $form = ActiveForm::begin(); ?>
 
 <table class="table table-striped">
     <thead>
@@ -57,7 +58,7 @@ use app\models\Cliente;
         echo "</tr>";
     }
     
-    $_SESSION["venta"]=$totalT;
+    $_SESSION["venta"]->Total=$totalT;
     //echo var_dump($detallev);
     ?> 
     <tr>
@@ -85,3 +86,5 @@ use app\models\Cliente;
     <div class="col-md-6">
         <?= Html::submitButton('FINALIZAR VENTA', ['class' => 'btn btn-success']) ?>
     </div>
+    
+    <?php ActiveForm::end(); ?>

@@ -31,7 +31,7 @@ use dosamigos\datepicker\DatePicker; //datepicker
                     'template' => '{addon}{input}',
                         'clientOptions' => [
                             'autoclose' => true,
-                            'format' => 'dd-M-yyyy'
+                            'format' => 'yyyy-mm-dd'
                         ]
                 ]);?>
     </div>
