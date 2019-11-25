@@ -77,6 +77,39 @@ class ProductoController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    public function actionBitacora2($id)
+    {
+        /** $searchModel = new ProductoSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('bitacora', [
+            'model' => $this->findModel($id),
+            'dataProvider' => $dataProvider,
+        ]); */
+            
+        /**$model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->ProductoID]);
+        }
+
+        return $this->render('bitacora', [
+            'model' => $model,
+        ]);*/
+        $model = $this->findModel($id);
+        
+        $searchModel = new \app\models\ProductoSalidaSearch();
+        $searchModel->ProductoID = $id;
+        $dataProvider =  $searchModel->search(Yii::$app->request->queryParams);
+        /*$searchModel->ProductoID = $id;*/
+        // $dataProvider = $searchModel;
+
+        return $this->render('bitacora2', [
+            'model'=>$model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 
     /**
      * Displays a single Producto model.
