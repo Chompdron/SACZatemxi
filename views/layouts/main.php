@@ -43,6 +43,7 @@ AppAsset::register($this);
     <!-- partial:partials/_sidebar.html -->
     <aside class="mdc-drawer mdc-drawer--dismissible mdc-drawer--open">
       <div class="mdc-drawer__header">
+
         
       </div>
       <div class="mdc-drawer__content">

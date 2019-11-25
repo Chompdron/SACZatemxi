@@ -1,27 +1,23 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\Url;
 use kartik\grid\GridView; 
-
+use yii\helpers\Url;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\PedidoSearch */
+/* @var $searchModel app\models\ProductoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Pedidos';
+$this->title = 'Reporte de Ventas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pedido-index">
+<div class="producto-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Pedido', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-        
+
+    
 <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -30,25 +26,18 @@ $this->params['breadcrumbs'][] = $this->title;
             [ 'attribute' => 'clave',
                 'format'=>'raw',
               'value'=>function($model){
-                
+        
+              }
+            ],
+            'VentaID', 
+            'ClienteID',
+            'Fecha',
+            'Total', 
+            'NombreComercial', 
+            'RazonSocial',
+            'Descuento',
 
-                return  Html::a("Actualizar",['/pedido/update','id'=>$model->PedidoID],["options"=>["data-pjax"=>"0"]]).
-                        '<a href="'.Url::to(['/pedido/view','id'=>$model->PedidoID]).'"  data-pjax="0">'." Ver".'</a>'.
-                        '<a href="'.Url::to(['/pedido/finalizar','id'=>$model->PedidoID]).'"  data-pjax="0">'." Finalizar".'</a>';
-              }
-            ],
-            [ 'attribute' => 'ProductoID',
-                'format'=>'raw',
-              'value'=>function($model){
-                
-                return  $model->producto->Nombre ;
-              }
-            ],
-            
-            'PedidoID',
-            'UnidadXLote',
-            'FechaInicio',
-            'FechaFin',
+
             //['class' => 'yii\grid\ActionColumn'],
         ],
         'resizableColumns'=>true,
@@ -66,7 +55,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'tableOptions'=>['class'=>'tbl_custom']
 
     ]); ?>
-    
-    
+
 
 </div>

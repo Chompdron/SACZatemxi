@@ -29,13 +29,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'raw',
               'value'=>function($model){
                 
-                return  Html::a("Actualizar",['/cliente/update','id'=>$model->PedidoProvID],["options"=>["data-pjax"=>"0"]]).
-                        '<a href="'.Url::to(['/cliente/view','id'=>$model->PedidoProvID]).'"  data-pjax="0">'." Ver".'</a>';
+                return  Html::a("Actualizar",['/pedido-prov/update','id'=>$model->PedidoProvID],["options"=>["data-pjax"=>"0"]]).
+                        '<a href="'.Url::to(['/pedido-prov/view','id'=>$model->PedidoProvID]).'"  data-pjax="0">'." Ver".'</a>';
               }
             ],
             
             'PedidoProvID',
-            'ProveedorID',
+            [ 'attribute' => 'PedidoprovID',
+            'format'=>'raw',
+            'value'=>function($model){
+           
+                $proveedor = $model->proveedor;
+             
+                return $proveedor->NombreComercial;
+            }
+        ],
             'Fecha',
             'Total',
 

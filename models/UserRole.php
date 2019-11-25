@@ -43,4 +43,18 @@ class UserRole extends \yii\db\ActiveRecord
             'RoleID' => 'Role ID',
         ];
     }
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getUser(){
+      return $this->hasOne(User::className(),['id'=>'UserID']);  
+    }
+    
+    
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getRole(){
+      return $this->hasOne(Role::className(),['RoleID'=>'RoleID']);  
+    }
 }

@@ -30,14 +30,31 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'raw',
               'value'=>function($model){
                 
-                return  Html::a("Actualizar",['/cliente/update','id'=>$model->id],["options"=>["data-pjax"=>"0"]]).
-                        '<a href="'.Url::to(['/cliente/view','id'=>$model->id]).'"  data-pjax="0">'." Ver".'</a>';
+                return  Html::a("Actualizar",['/user-role/update','id'=>$model->id],["options"=>["data-pjax"=>"0"]]).
+                        '<a href="'.Url::to(['/user-role/view','id'=>$model->id]).'"  data-pjax="0">'." Ver".'</a>';
+
               }
             ],
             
             'id',
-            'UserID',
-            'RoleID',
+            [ 'attribute' => 'UserID',
+                'format'=>'raw',
+              'value'=>function($model){
+                
+                $user = $model->user;
+                  
+                return $user->username;
+              }
+            ],
+            [ 'attribute' => 'RoleID',
+                'format'=>'raw',
+              'value'=>function($model){
+                
+                $role = $model->role;
+                  
+                return $role->Nombre;
+              }
+            ],
 
 
             //['class' => 'yii\grid\ActionColumn'],
@@ -60,3 +77,17 @@ $this->params['breadcrumbs'][] = $this->title;
     
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

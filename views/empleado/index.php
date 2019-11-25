@@ -32,16 +32,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'raw',
               'value'=>function($model){
                 
-                return  Html::a("Actualizar",['/Empleado/update','id'=>$model->EmpleadoID],["options"=>["data-pjax"=>"0"]]).
-                        '<a href="'.Url::to(['/Empleado/view','id'=>$model->EmpleadoID]).'"  data-pjax="0">'." Ver".'</a>';
+                return  Html::a("Actualizar",['/empleado/update','id'=>$model->EmpleadoID],["options"=>["data-pjax"=>"0"]]).
+                        '<a href="'.Url::to(['/empleado/view','id'=>$model->EmpleadoID]).'"  data-pjax="0">'." Ver".'</a>';
               }
-            ],
-            
+         ],
             'EmpleadoID',
             'HorasxSem',
             'PagoxHrs',
-            'UserID',
-
+            [ 'attribute' => 'UserID',
+                'format'=>'raw',
+              'value'=>function($model){
+                
+                $user = $model->user;
+                  
+                return $user->username;
+              }
+            ],
             //['class' => 'yii\grid\ActionColumn'],
         ],
         'resizableColumns'=>true,

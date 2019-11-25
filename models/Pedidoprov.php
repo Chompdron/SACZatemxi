@@ -47,4 +47,9 @@ class Pedidoprov extends \yii\db\ActiveRecord
             'Total' => 'Total',
         ];
     }
+
+    public function getProveedor(){
+        return $this->hasOne(Proveedor::className(),['ProveedorID'=>'ProveedorID']);  
+    }
+    
 }
