@@ -70,10 +70,12 @@ class PedidoController extends Controller
         if ($model->load(Yii::$app->request->post()) ) {
             $receta = $model->getInsumos();
             foreach($receta as $r){
-                $insumo = Insumo->findModel($r->'InsumoID');
+                $insumoid = $r->InsumoID;
+                $s = new Insumo();
+                $insumo = $s->findModel($insumoid);
                 $insumo->Stock -= $r->Cantidad;
             }
-            $model->save()
+            $model->save();
             return $this->redirect(['view', 'id' => $model->PedidoID]);
         }
 
