@@ -4,6 +4,7 @@ namespace app\controllers;
 
 
 use Yii;
+use app\models\Fechaconsulta;
 use app\models\Cliente;
 use app\models\ClienteSearch;
 use yii\web\Controller;
@@ -43,12 +44,33 @@ class GraficoController extends Controller
     
     public function actionProdventas()
     {
+         $venta = new Fechaconsulta();
+        //$_SESSION["venta"] = $venta;
+
+        if ($venta->load(Yii::$app->request->post())) {
+            $_SESSION["Fechas"] = $venta;
+            
+            return $this->redirect(['prodventasfecha']);
+        }
+
+        return $this->render('prodventas', [
+            'model' => $venta,
+        ]);
+        
         return $this->render('prodventas.php',[]);
+    }
+    public function actionProdventasfecha()
+    {
+        return $this->render('prodventasfecha.php',[]);
     }
     
     public function actionClientemes()
     {
         return $this->render('clientemes.php',[]);
+    }
+    public function actionDiasmasventas()
+    {
+        return $this->render('diasmasventas.php',[]);
     }
 }    
     

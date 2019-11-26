@@ -17,6 +17,10 @@ use dosamigos\datepicker\DatePicker; //datepicker
     <div class="col-md-4">
         <?= Html::a('Productos más vendidos',["prodventas"], ['class' => 'btn btn-success']) ?>
     </div>
+    
+     <div class="col-md-4">
+        <?= Html::a('Días con más ventas',["diasmasventas"], ['class' => 'btn btn-success']) ?>
+    </div>
 
     
     <div class="col-md-4">

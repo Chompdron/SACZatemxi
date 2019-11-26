@@ -9,12 +9,12 @@ use yii\web\JsExpression;
 //SELECT producto.Nombre,SUM(ventalista.Cantidad) FROM ventalista INNER JOIN producto ON producto.ProductoID = ventalista.ProductoID INNER JOIN venta ON venta.VentaID = ventalista.DetVentaID WHERE venta.Fecha BETWEEN CAST('2014-02-01' AS DATE) AND CAST('2020-02-28' AS DATE) GROUP BY producto.ProductoID;
 
 //Traer todos los productos ordenados por nombre
-$mProducto = \app\models\clientesmascompradores::find()->all();
+$mProducto = \app\models\Diasconmasventas::find()->all();
 //Llenar un arreglo con los nombres de los productos para que sean las "categorías"
 
 $arreglo = array();
 foreach ($mProducto as $prod) {
-    $arreglotemp = ['name'=> $prod->NombreComercial,
+    $arreglotemp = ['name'=> $prod->fecha,
             'y'=> ($prod->Ventas)+0
 
             ];
@@ -34,7 +34,7 @@ echo Highcharts::widget([
         'type' => 'column',
         
         'title' => [
-            'text' => 'Clientes más compradores',
+            'text' => 'Dias con más ventas',
         ],
   'xAxis' => [
     'type' => 'category',
@@ -49,14 +49,14 @@ echo Highcharts::widget([
   'yAxis' => [
     'min' => 0,
     'title' => [
-      'text' => 'Cantidad de Compras'
+      'text' => 'Cantidad de Ventas'
     ]
   ],
   'legend' => [
     'enabled' => false
   ],
   'series' => [[
-    'name' => 'Compras',
+    'name' => 'Ventas',
     'data' => $arreglo
     
   ]
