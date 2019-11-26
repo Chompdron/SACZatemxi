@@ -9,13 +9,13 @@ use app\models\ClienteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\Reporte3Search;
+use app\models\Reporte2Search;
 
 
 /**
  * ClienteController implements the CRUD actions for Cliente model.
  */
-class Reporte3Controller extends Controller
+class Reporte2Controller extends Controller
 {
     /**
      * {@inheritdoc}
@@ -38,7 +38,7 @@ class Reporte3Controller extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new Reporte3Search();
+        $searchModel = new Reporte2Search();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
