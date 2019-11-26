@@ -19,7 +19,10 @@ use yii\helpers\Url;
     <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">track_changes</i>
     PUNTO DE VENTA
 </a>
-
+   <a class="mdc-drawer-link" href="<?=Url::to(["/grafico"])?>">
+    <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">track_changes</i>
+    GRÁFICOS CHULOS
+</a>
 <div class="mdc-list-item mdc-drawer-item">
     <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="ui-sub-menu">
         <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">dashboard</i>

@@ -132,5 +132,7 @@ CREATE TABLE VentaLista (
 );
 
 
-ALTER TABLE insumo add column ProveedorID after PrecioXUnidad,
-ALTER TABLE insumo FOREIGN KEY (ProveedorID) REFERENCES Proveedor(ProveedorID)
+ALTER TABLE insumo add column ProveedorID int
+
+
+ALTER TABLE insumo add FOREIGN KEY (ProveedorID) REFERENCES Proveedor(ProveedorID)
