@@ -16,7 +16,7 @@ $model
 
 ?>
 <div class="producto-bitacora">
-    <h1>Bitácora de entradas</h1>
+    <h1>Bitácora de salidas</h1>
 <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -24,15 +24,12 @@ $model
           
             [ 'attribute' => 'InsumoID',
                 'format'=>'raw',
-              'value'=>function($model){
-                
-                return  $model->Nombre ;
-              }
+             
             ],
 
             
-            'Cantidad',
-            'Fecha',
+            'FechaInicio',
+            'UnidadXLote',
 
             //['class' => 'yii\grid\ActionColumn'],
         ],

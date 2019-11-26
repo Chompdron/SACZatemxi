@@ -40,9 +40,9 @@ class Receta extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'RecetaID' => 'Receta ID',
-            'ProductoID' => 'Producto ID',
-            'InsumoID' => 'Insumo ID',
+            'RecetaID' => 'ID de Redeta',
+            'ProductoID' => 'ID del Producto',
+            'InsumoID' => 'ID del Insumo',
             'Cantidad' => 'Cantidad',
         ];
     }

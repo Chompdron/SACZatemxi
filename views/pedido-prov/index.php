@@ -8,7 +8,7 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\PedidoProvSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Pedido Provs';
+$this->title = 'Pedido-Proveedor';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pedido-prov-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Pedido Prov', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Nuevo Pedido-Proveedor', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

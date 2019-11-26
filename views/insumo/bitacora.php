@@ -7,7 +7,7 @@ use kartik\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Producto */
 
-$this->title = 'Bitácora del Producto: ' . $model->InsumoID;
+$this->title = 'Bitácora del Insumo: ' . $model->InsumoID;
 
         /* $mProducto = \app\models\Producto::find()->orderBy('Nombre')->all();
         $cmbProducto = \yii\helpers\ArrayHelper::map($mProducto, 'ProductoID', 'Nombre');
@@ -24,10 +24,6 @@ $model
           
             [ 'attribute' => 'InsumoID',
                 'format'=>'raw',
-              'value'=>function($model){
-                
-                return  $model->Nombre ;
-              }
             ],
 
             

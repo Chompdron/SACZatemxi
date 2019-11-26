@@ -59,6 +59,21 @@ class InsumoController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+     public function actionBitacora2($id)
+    {
+        
+        $model = $this->findModel($id);
+        
+        $searchModel = new \app\models\InsumoSalidaSearch();
+        $searchModel->InsumoID = $id;
+        $dataProvider =  $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('bitacora2', [
+            'model'=>$model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
     
 
     /**
