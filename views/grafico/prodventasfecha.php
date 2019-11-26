@@ -8,14 +8,15 @@ use yii\web\JsExpression;
 
 //SELECT producto.Nombre,SUM(ventalista.Cantidad) FROM ventalista INNER JOIN producto ON producto.ProductoID = ventalista.ProductoID INNER JOIN venta ON venta.VentaID = ventalista.DetVentaID WHERE venta.Fecha BETWEEN CAST('2014-02-01' AS DATE) AND CAST('2020-02-28' AS DATE) GROUP BY producto.ProductoID;
 
-//Traer todos los productos ordenados por nombre
-$mProducto = \app\models\clientesmascompradores::find()->all();
+
+$list= Yii::$app->db->createCommand('SELECT producto.Nombre as name,SUM(ventalista.Cantidad) as y FROM ventalista INNER JOIN producto ON producto.ProductoID = ventalista.ProductoID INNER JOIN venta ON venta.VentaID = ventalista.DetVentaID WHERE venta.Fecha BETWEEN CAST(\''.$_SESSION["Fechas"]->FechaInicio.'1\' AS DATE) AND CAST(\''.$_SESSION["Fechas"]->FechaFin.'\' AS DATE) GROUP BY producto.ProductoID;')->queryAll();
+
 //Llenar un arreglo con los nombres de los productos para que sean las "categorías"
 
 $arreglo = array();
-foreach ($mProducto as $prod) {
-    $arreglotemp = ['name'=> $prod->NombreComercial,
-            'y'=> ($prod->Ventas)+0
+foreach ($list as $prod) {
+    $arreglotemp = ['name'=> $prod['name'],
+            'y'=> $prod['y']+0
 
             ];
     
@@ -34,7 +35,7 @@ echo Highcharts::widget([
         'type' => 'column',
         
         'title' => [
-            'text' => 'Clientes más compradores',
+            'text' => 'Productos más vendidos Globalmente',
         ],
   'xAxis' => [
     'type' => 'category',
@@ -49,14 +50,14 @@ echo Highcharts::widget([
   'yAxis' => [
     'min' => 0,
     'title' => [
-      'text' => 'Cantidad de Compras'
+      'text' => 'Piezas vendidas'
     ]
   ],
   'legend' => [
     'enabled' => false
   ],
   'series' => [[
-    'name' => 'Compras',
+    'name' => 'Vendidos',
     'data' => $arreglo
     
   ]
@@ -75,6 +76,7 @@ echo Highcharts::widget([
 ]]);
 
 ?>
+
 
 <?php
 //Para cargar únicamente las librerías

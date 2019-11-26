@@ -5,24 +5,31 @@ use miloschuman\highcharts\Highcharts;
 use miloschuman\highcharts\HighchartsAsset; //Para cargar únicamente las librerías
 
 use yii\web\JsExpression;
-//SELECT ProductoID,SUM(Cantidad),COUNT(*) FROM ventalista GROUP BY ProductoID
-//SELECT ventalista.ProductoID,SUM(ventalista.Cantidad),producto.Nombre FROM ventalista INNER JOIN producto ON producto.ProductoID = ventalista.ProductoID INNER JOIN venta ON venta.VentaID = ventalista.DetVentaID GROUP BY ProductoID
+
+use yii\helpers\Html;
+use yii\web\View;
+use app\models\Fechaconsulta;
+use yii\widgets\ActiveForm;
+use kartik\select2\Select2; // utilizados para select2s
+use dosamigos\datepicker\DatePicker; //datepicker
+
+
+//SELECT producto.Nombre,SUM(ventalista.Cantidad) FROM ventalista INNER JOIN producto ON producto.ProductoID = ventalista.ProductoID INNER JOIN venta ON venta.VentaID = ventalista.DetVentaID WHERE venta.Fecha BETWEEN CAST('2014-02-01' AS DATE) AND CAST('2020-02-28' AS DATE) GROUP BY producto.ProductoID;
 //Traer todos los productos ordenados por nombre
-$mProducto = \app\models\Producto::find()->GROUPBY('Nombre')->all();
+$mProducto = \app\models\Productosmasvendidos::find()->all();
 //Llenar un arreglo con los nombres de los productos para que sean las "categorías"
-$ProductosLista = Array();
-foreach ($mProducto as $prod) {
-array_push($ProductosLista,$prod->Nombre); 
-}
 
 $arreglo = array();
 foreach ($mProducto as $prod) {
     $arreglotemp = ['name'=> $prod->Nombre,
-            'y'=> $prod->Stock
+            'y'=> ($prod->ven)+0
+
             ];
     
   array_push($arreglo,$arreglotemp); 
 }
+
+//echo var_dump($arreglo);
 
 echo Highcharts::widget([
     'scripts' => [
@@ -34,7 +41,7 @@ echo Highcharts::widget([
         'type' => 'column',
         
         'title' => [
-            'text' => 'World\'s largest cities per 2017',
+            'text' => 'Productos más vendidos Globalmente',
         ],
   'xAxis' => [
     'type' => 'category',
@@ -49,17 +56,14 @@ echo Highcharts::widget([
   'yAxis' => [
     'min' => 0,
     'title' => [
-      'text' => 'Population (millions)'
+      'text' => 'Piezas vendidas'
     ]
   ],
   'legend' => [
     'enabled' => false
   ],
-  'tooltip' => [
-    'pointFormat' => 'Population ions</b>'
-  ],
   'series' => [[
-    'name' => 'Population',
+    'name' => 'Vendidos',
     'data' => $arreglo
     
   ]
@@ -79,7 +83,41 @@ echo Highcharts::widget([
 
 ?>
 
-SELECT ProductoID,SUM(Cantidad),COUNT(*) FROM ventalista GROUP BY ProductoID
+
+<?php $form = ActiveForm::begin(); ?>
+<div class="col-md-6">
+            <label>Fecha de Inicio</label>
+        <?= DatePicker::widget([
+                    'model' => $model,
+                    'attribute' => 'FechaInicio',
+                    'options' => ['required'=>true],
+                    'template' => '{addon}{input}',
+                        'clientOptions' => [
+                            'autoclose' => true,
+                            'format' => 'yyyy-mm-dd'
+                        ]
+                ]);?>
+</div>
+
+<div class="col-md-6">
+            <label>Fecha de Término</label>
+        <?= DatePicker::widget([
+                    'model' => $model,
+                    'attribute' => 'FechaFin',
+                    'options' => ['required'=>true],
+                    'template' => '{addon}{input}',
+                        'clientOptions' => [
+                            'autoclose' => true,
+                            'format' => 'yyyy-mm-dd'
+                        ]
+                ]);?>
+</div>
+<br>
+    <div class="col-md-4">
+        <?= Html::submitButton('Ordenar por fechas', ['class' => 'btn btn-success']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
 
 <?php
 //Para cargar únicamente las librerías
