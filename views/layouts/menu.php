@@ -43,7 +43,7 @@ use yii\helpers\Url;
             </div>
             <div class="mdc-list-item mdc-drawer-item">
                 <a class="mdc-drawer-link" href="<?=Url::to(["/unidad-presentacion"])?>">
-                    UNIDADES DE PRESENTACIÓN
+                    UNIDADES
                 </a>
             </div>
         </nav>
@@ -59,12 +59,12 @@ use yii\helpers\Url;
         <nav class="mdc-list mdc-drawer-submenu">
             <div class="mdc-list-item mdc-drawer-item">
                 <a class="mdc-drawer-link" href="<?=Url::to(["/pedido-prov"])?>">
-                    COMPRAS A PROVEEDOR
+                    A PROVEEDOR
                 </a>
             </div>
             <div class="mdc-list-item mdc-drawer-item">
                 <a class="mdc-drawer-link" href="<?=Url::to(["/pedido"])?>">
-                    PEDIDOS A PRODUCCIÓN
+                    A PRODUCCIÓN
                 </a>
         </nav>
     </div>
