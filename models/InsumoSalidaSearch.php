@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Producto;
+use app\models\Insumo;
 
 /**
  * ProductoSearch represents the model behind the search form of `app\models\Producto`.
  */
-class ProductoSalidaSearch extends ProductoSalida
+class InsumoSalidaSearch extends InsumoSalida
 {
     /**
      * {@inheritdoc}
@@ -17,10 +17,10 @@ class ProductoSalidaSearch extends ProductoSalida
     public function rules()
     {
        return [
-            [['VentaID', 'ClienteID', 'ProductoID', 'Cantidad'], 'integer'],
-            [['Fecha'], 'safe'],
-            [['Total', 'Descuento'], 'number'],
-            [['Nombre'], 'string', 'max' => 256],
+            [['InsumoID'], 'integer'],
+            [['FechaInicio', 'UnidadXLote'], 'required'],
+            [['FechaInicio'], 'safe'],
+            [['UnidadXLote'], 'number'],
         ];
     }
 
@@ -42,7 +42,7 @@ class ProductoSalidaSearch extends ProductoSalida
      */
     public function search($params)
     {
-        $query = ProductoSalida::find();
+        $query = InsumoSalida::find();
 
         // add conditions that should always apply here
 
@@ -60,9 +60,9 @@ class ProductoSalidaSearch extends ProductoSalida
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'ProductoID' => $this->ProductoID,
-            'Cantidad' => $this->Cantidad,
-            'Fecha' => $this->Fecha,
+            'InsumoID' => $this->InsumoID,
+            'FechaInicio' => $this->FechaInicio,
+            'UnidadXLote' => $this->UnidadXLote,
         ]);
 
         $query->andFilterWhere(['like', 'Nombre', $this->Nombre]);

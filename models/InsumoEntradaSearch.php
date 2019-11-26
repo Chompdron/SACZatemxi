@@ -43,7 +43,7 @@ class InsumoEntradaSearch extends InsumoEntrada
      */
     public function search($params)
     {
-        $query = ProductoSalida::find();
+        $query = InsumoEntrada::find();
 
         // add conditions that should always apply here
 
