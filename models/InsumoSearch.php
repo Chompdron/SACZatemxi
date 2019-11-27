@@ -17,9 +17,9 @@ class InsumoSearch extends Insumo
     public function rules()
     {
         return [
-            [['InsumoID', 'UnidadPresentacionID', 'ProveedorID'], 'integer'],
+            [['InsumoID', 'UnidadPresentacionID', 'ProveedorID', 'Stock'], 'integer'],
             [['Descripcion'], 'safe'],
-            [['Stock', 'PrecioXUnidad'], 'number'],
+            [['PrecioXUnidad'], 'number'],
         ];
     }
 

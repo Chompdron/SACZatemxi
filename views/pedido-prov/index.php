@@ -10,13 +10,15 @@ use kartik\grid\GridView;
 
 $this->title = 'Pedido-Proveedor';
 $this->params['breadcrumbs'][] = $this->title;
+unset($_SESSION["compra"]);
+unset($_SESSION["detc"]);
 ?>
 <div class="pedido-prov-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Nuevo Pedido-Proveedor', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Nuevo Pedido A PROVEEDOR', ['nuevacompra'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -35,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             
             'PedidoProvID',
-            [ 'attribute' => 'PedidoprovID',
+            [ 'attribute' => 'ProveedorID',
             'format'=>'raw',
             'value'=>function($model){
            
