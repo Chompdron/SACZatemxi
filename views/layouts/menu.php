@@ -80,14 +80,15 @@ use yii\helpers\Url;
             <div class="mdc-list-item mdc-drawer-item">
                 <a class="mdc-drawer-link" href="<?=Url::to(["/reporte/index"])?>">
                     REPORTE1
-                </a>
+                </a> </div>
                 <div class="mdc-list-item mdc-drawer-item">
                 <a class="mdc-drawer-link" href="<?=Url::to(["/reporte1/index"])?>">
                     REPORTE2
-                </a>
+                </a> </div>
+                <div class="mdc-list-item mdc-drawer-item">
                 <a class="mdc-drawer-link" href="<?=Url::to(["/reporte2/index"])?>">
                     REPORTE3
-                </a>
+                </a> </div>
                 <div class="mdc-list-item mdc-drawer-item">
                 <a class="mdc-drawer-link" href="<?=Url::to(["/reporte3/index"])?>">
                     REPORTE4

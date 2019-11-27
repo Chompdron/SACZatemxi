@@ -79,7 +79,7 @@ use app\models\Proveedor;
 </table>
 
     <div class="col-md-6">
-        <?= Html::a('Regresar',["nuevaventa"], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Regresar',["nuevacompra"], ['class' => 'btn btn-success']) ?>
     </div>
 
    

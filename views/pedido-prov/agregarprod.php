@@ -10,7 +10,7 @@ use dosamigos\datepicker\DatePicker; //datepicker
 /* @var $model app\models\Venta */
 /* @var $form yii\widgets\ActiveForm */
 
-    $mInsumo = \app\models\Insumo::find()->orderBy('Descripcion')->all();
+    $mInsumo = \app\models\Insumo::find()->Where('ProveedorID = '.$_SESSION["compra"]->ProveedorID)->all();
     $cmbInsumo = \yii\helpers\ArrayHelper::map($mInsumo, 'InsumoID', 'Descripcion');
 
 ?>
@@ -34,7 +34,7 @@ use dosamigos\datepicker\DatePicker; //datepicker
     </div>
 
     <div class="col-md-6">
-        <?= Html::a('Regresar',["nuevaventa"], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Regresar',["nuevacompra"], ['class' => 'btn btn-success']) ?>
     </div>
 
     <div class="col-md-6">

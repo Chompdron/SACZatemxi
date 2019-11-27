@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\PedidoProv;
 use app\models\Insumo;
+use app\models\Producto;
 use app\models\PedidoProvlista;
 use app\models\PedidoProvSearch;
 use yii\web\Controller;
@@ -198,9 +199,10 @@ class PedidoProvController extends Controller
                 $detallev->PedidoProvID=$_SESSION["compra"]->PedidoProvID;
                 $detallev->save();
                 
-                $InsCompra = Insumo::findone($detallev->InsumoID);
-                $InsCompra->Stock += $detallev->Cantidad;
-                $InsCompra->Save();
+                
+                $ProdCompra = Insumo::findone($detallev->InsumoID);
+                $ProdCompra->Stock += $detallev->Cantidad;
+                $ProdCompra->Save();
                 
             }
             
