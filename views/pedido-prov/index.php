@@ -31,8 +31,7 @@ unset($_SESSION["detc"]);
                 'format'=>'raw',
               'value'=>function($model){
                 
-                return  Html::a("Actualizar",['/pedido-prov/update','id'=>$model->PedidoProvID],["options"=>["data-pjax"=>"0"]]).
-                        '<a href="'.Url::to(['/pedido-prov/view','id'=>$model->PedidoProvID]).'"  data-pjax="0">'." Ver".'</a>';
+                return  Html::a("TICKET",['/pedido-prov/view','id'=>$model->PedidoProvID]);
               }
             ],
             

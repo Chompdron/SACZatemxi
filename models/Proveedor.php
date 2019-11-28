@@ -43,7 +43,7 @@ class Proveedor extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ProveedorID' => 'ID del Proveedor',
+            'ProveedorID' => 'Proveedor',
             'NombreComercial' => 'Nombre Comercial',
             'RazonSocial' => 'Razón Social',
             'RFC' => 'RFC',

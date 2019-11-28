@@ -43,12 +43,12 @@ class Insumo extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'InsumoID' => 'Insumo ID',
-            'Descripcion' => 'Descripcion',
-            'UnidadPresentacionID' => 'Unidad Presentacion ID',
+            'InsumoID' => 'Insumo',
+            'Descripcion' => 'Descripción',
+            'UnidadPresentacionID' => 'Unidad de presentacion',
             'Stock' => 'Stock',
-            'PrecioXUnidad' => 'Precio X Unidad',
-            'ProveedorID' => 'Proveedor ID',
+            'PrecioXUnidad' => 'Precio por Unidad',
+            'ProveedorID' => 'Proveedor',
         ];
     }
     public function getUnidadPresentacion(){

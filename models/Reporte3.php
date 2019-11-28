@@ -39,8 +39,8 @@ class Reporte3 extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'PedidoID' => 'Pedido ID',
-            'ProductoID' => 'Producto ID',
+            'PedidoID' => '# Pedido',
+            'ProductoID' => 'Producto',
             'Status' => 'Status',
         ];
     }
