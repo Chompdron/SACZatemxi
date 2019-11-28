@@ -32,7 +32,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'EmpleadoID',
             'HorasxSem',
             'PagoxHrs',
-            'UserID',
+            [ 'attribute' => 'UserID',
+                'format'=>'raw',
+              'value'=>function($model){
+                
+                $user = $model->user;
+                  
+                return $user->username;
+              }
+            ],
         ],
     ]) ?>
 

@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Borrar', ['delete', 'id' => $model->InsumoID], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => '¿Seguro que lo quieres eliminar?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -33,10 +33,26 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'InsumoID',
             'Descripcion',
-            'UnidadPresentacionID',
+            [ 'attribute' => 'UnidadPresentacionID',
+           'format'=>'raw',
+         'value'=>function($model){
+           
+           $UnidadPresentacion = $model->UnidadPresentacion;
+             
+           return $UnidadPresentacion->Nombre;
+         }
+       ],
             'Stock',
             'PrecioXUnidad',
-            'ProveedorID',
+              [ 'attribute' => 'ProveedorID',
+           'format'=>'raw',
+         'value'=>function($model){
+           
+           $Proveedor = $model->Proveedor;
+             
+           return $Proveedor->NombreComercial;
+         }
+       ],
         ],
     ]) ?>
 

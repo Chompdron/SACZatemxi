@@ -50,11 +50,11 @@ class Pedido extends \yii\db\ActiveRecord
         return [
             'PedidoID' => 'Pedido',
             'ProductoID' => 'Producto',
-            'UnidadXLote' => 'Unidad X Lote',
-            'FechaInicio' => 'Fecha Inicio',
-            'FechaFin' => 'Fecha Fin',
+            'UnidadXLote' => 'Unidades en el Lote',
+            'FechaInicio' => 'Fecha de Inicio',
+            'FechaFin' => 'Fecha de Fin',
             'Status' => 'Estatus',
-            'FechaStatusFin' => 'Fecha Estatus Fin',
+            'FechaStatusFin' => 'Fecha de Finalización Real',
         ];
     }
 

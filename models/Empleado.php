@@ -40,10 +40,10 @@ class Empleado extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'EmpleadoID' => 'Empleado ID',
-            'HorasxSem' => 'Horasx Sem',
-            'PagoxHrs' => 'Pagox Hrs',
-            'UserID' => 'User ID',
+            'EmpleadoID' => 'Empleado',
+            'HorasxSem' => 'Horas por Semana',
+            'PagoxHrs' => 'Pago por Hr',
+            'UserID' => 'Usuario',
         ];
     }
 

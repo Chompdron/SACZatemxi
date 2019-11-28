@@ -41,8 +41,8 @@ class Pedidoprov extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'PedidoProvID' => 'ID del Pedido/Proveedor',
-            'ProveedorID' => 'ID del Proveedor',
+            'PedidoProvID' => '# Pedido a Proveedor',
+            'ProveedorID' => 'Proveedor',
             'Fecha' => 'Fecha',
             'Total' => 'Total',
         ];

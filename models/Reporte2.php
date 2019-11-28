@@ -42,9 +42,9 @@ class Reporte2 extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'InsumoID' => 'Insumo ID',
-            'Descripcion' => 'Descripcion',
-            'ProveedorID' => 'Proveedor ID',
+            'InsumoID' => 'Insumo',
+            'Descripcion' => 'Descripción',
+            'ProveedorID' => 'Proveedor',
             'NombreComercial' => 'Nombre Comercial',
             'Fecha' => 'Fecha',
         ];

@@ -40,9 +40,9 @@ class Insumosalida extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'InsumoID' => 'ID del insumo',
+            'InsumoID' => 'Insumo',
             'FechaInicio' => 'Fecha de inicio',
-            'UnidadXLote' => 'Unidad por lote',
+            'UnidadXLote' => 'Unidades en el lote',
         ];
     }
 }

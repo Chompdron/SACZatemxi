@@ -40,9 +40,9 @@ class Users extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'username' => 'Username',
-            'password' => 'Password',
+            'id' => 'Usuario',
+            'username' => 'Nombre de Usuario',
+            'password' => 'Contraseña',
             'auth_Key' => 'Auth Key',
             'accessToken' => 'Access Token',
         ];
