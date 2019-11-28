@@ -17,6 +17,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'EmpleadoID') ?>
 
+    <?= $form->field($model, 'Nombre') ?>
+
     <?= $form->field($model, 'HorasxSem') ?>
 
     <?= $form->field($model, 'PagoxHrs') ?>

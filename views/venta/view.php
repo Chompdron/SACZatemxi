@@ -79,6 +79,9 @@ $Cliente = Cliente::findone($model->ClienteID);
     </tr>
     </tbody>
 </table>
-
+   
+    <div class="col-md-4">
+        <?= Html::a("IMPRIMIR",['/venta/pdf','id'=>$model->VentaID],["options"=>["data-pjax"=>"0"]]); ?>
+    </div>
 
 </div>
