@@ -79,6 +79,9 @@ $Proveedor = Proveedor::findone($model->ProveedorID);
     </tr>
     </tbody>
 </table>
+    <div class="col-md-4">
+        <?= Html::a("IMPRIMIR",['/pedido-prov/pdf','id'=>$model->PedidoProvID],["options"=>["data-pjax"=>"0"]]); ?>
+    </div>
 
 
 </div>

@@ -17,21 +17,21 @@ use kartik\select2\Select2; // utilizados para select2
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <div class="col-md-4 col-lg-4">
-        <?=$form->field($model, 'UserID')->widget(Select2::classname(), [
-                    'id'       => 'usuario',
-                    'value'    => $model->UserID,
-                    'data'     => $cmbUsuario, 'options'  => ['placeholder' => 'Seleccione el usuario ...'],
-                    'language' => 'es', 'pluginOptions' => ['allowClear' => true]])?>
-    </div>
-
-
+    <?= $form->field($model, 'Nombre')->textInput(['maxlength' => true]) ?>
 
     <div class="col-md-4 col-lg-4">
         <?= $form->field($model, 'HorasxSem')->textInput() ?>
     </div>
     <div class="col-md-4 col-lg-4">
         <?= $form->field($model, 'PagoxHrs')->textInput() ?>
+    </div>
+
+        <div class="col-md-4 col-lg-4">
+        <?=$form->field($model, 'UserID')->widget(Select2::classname(), [
+                    'id'       => 'usuario',
+                    'value'    => $model->UserID,
+                    'data'     => $cmbUsuario, 'options'  => ['placeholder' => 'Seleccione el usuario ...'],
+                    'language' => 'es', 'pluginOptions' => ['allowClear' => true]])?>
     </div>
 
     <div class="form-group">
@@ -41,7 +41,6 @@ use kartik\select2\Select2; // utilizados para select2
     <div class="form-group">
         <?= Html::a('Regresar',["index"], ['class' => 'btn btn-success']) ?>
     </div>
-
 
     <?php ActiveForm::end(); ?>
 

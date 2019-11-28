@@ -18,6 +18,7 @@ class EmpleadoSearch extends Empleado
     {
         return [
             [['EmpleadoID', 'UserID'], 'integer'],
+            [['Nombre'], 'safe'],
             [['HorasxSem', 'PagoxHrs'], 'number'],
         ];
     }
@@ -63,6 +64,8 @@ class EmpleadoSearch extends Empleado
             'PagoxHrs' => $this->PagoxHrs,
             'UserID' => $this->UserID,
         ]);
+
+        $query->andFilterWhere(['like', 'Nombre', $this->Nombre]);
 
         return $dataProvider;
     }
