@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 26, 2019 at 09:39 PM
+-- Generation Time: Nov 29, 2019 at 08:43 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -81,19 +81,21 @@ CREATE TABLE IF NOT EXISTS `diasconmasventas` (
 DROP TABLE IF EXISTS `empleado`;
 CREATE TABLE IF NOT EXISTS `empleado` (
   `EmpleadoID` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(255) COLLATE latin1_spanish_ci NOT NULL,
   `HorasxSem` float DEFAULT NULL,
   `PagoxHrs` float DEFAULT NULL,
   `UserID` int(11) NOT NULL,
   PRIMARY KEY (`EmpleadoID`),
   KEY `UserID` (`UserID`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Dumping data for table `empleado`
 --
 
-INSERT INTO `empleado` (`EmpleadoID`, `HorasxSem`, `PagoxHrs`, `UserID`) VALUES
-(1, 60, 64, 1);
+INSERT INTO `empleado` (`EmpleadoID`, `Nombre`, `HorasxSem`, `PagoxHrs`, `UserID`) VALUES
+(1, 'Andrés Rafael Ramírez Nava', 60, 64, 1),
+(2, 'Rogelio', 40, 18, 2);
 
 -- --------------------------------------------------------
 
@@ -120,22 +122,23 @@ CREATE TABLE IF NOT EXISTS `insumo` (
   `InsumoID` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(255) COLLATE latin1_spanish_ci NOT NULL,
   `UnidadPresentacionID` int(11) NOT NULL,
-  `Stock` float NOT NULL,
+  `Stock` double DEFAULT NULL,
   `PrecioXUnidad` float NOT NULL,
   `ProveedorID` int(11) DEFAULT NULL,
   PRIMARY KEY (`InsumoID`),
   KEY `UnidadPresentacionID` (`UnidadPresentacionID`),
   KEY `ProveedorID` (`ProveedorID`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Dumping data for table `insumo`
 --
 
 INSERT INTO `insumo` (`InsumoID`, `Descripcion`, `UnidadPresentacionID`, `Stock`, `PrecioXUnidad`, `ProveedorID`) VALUES
-(1, 'dfs', 1, 12, 3, 1),
-(2, 'avena', 1, 0, 0, 1),
-(3, 'avena', 1, 12, 3, 1);
+(1, 'dfs', 1, 1.5, 3, 1),
+(2, 'avena', 1, -1.5, 0, 1),
+(3, 'whatrsadf', 1, -10.3, 3, 1),
+(4, 'Algo', 1, 8986.5, 60, 2);
 
 -- --------------------------------------------------------
 
@@ -180,11 +183,48 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   `UnidadXLote` float NOT NULL,
   `FechaInicio` datetime NOT NULL,
   `FechaFin` datetime NOT NULL,
-  `Status` bit(1) NOT NULL,
-  `FechaStatusFin` datetime NOT NULL,
+  `Status` bit(1) DEFAULT NULL,
+  `FechaStatusFin` datetime DEFAULT NULL,
   PRIMARY KEY (`PedidoID`),
   KEY `pedido_ibfk_1` (`ProductoID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Dumping data for table `pedido`
+--
+
+INSERT INTO `pedido` (`PedidoID`, `ProductoID`, `UnidadXLote`, `FechaInicio`, `FechaFin`, `Status`, `FechaStatusFin`) VALUES
+(2, 3, 100, '2019-11-06 00:00:00', '2019-11-20 00:00:00', NULL, '2019-11-29 00:00:00'),
+(3, 3, 100, '2019-10-29 00:00:00', '2019-12-05 00:00:00', b'0', '2019-11-29 00:00:00'),
+(4, 3, 100, '2019-10-29 00:00:00', '2019-12-11 00:00:00', b'0', '2019-11-29 00:00:00'),
+(5, 3, 100, '2019-11-06 00:00:00', '2019-11-22 00:00:00', b'0', '2019-11-29 00:00:00'),
+(6, 3, 100, '2019-10-29 00:00:00', '2019-11-30 00:00:00', b'0', '2019-11-29 00:00:00'),
+(7, 3, 110, '2019-11-04 00:00:00', '2019-11-22 00:00:00', b'0', '2019-11-29 00:00:00'),
+(8, 3, 100, '2019-10-29 00:00:00', '2019-12-05 00:00:00', b'0', '2019-11-29 00:00:00'),
+(9, 3, 100, '2019-11-05 00:00:00', '2019-11-29 00:00:00', b'1', NULL),
+(10, 3, 110, '2019-11-14 00:00:00', '2019-12-07 00:00:00', b'1', NULL),
+(11, 3, 100, '2019-11-06 00:00:00', '2019-12-11 00:00:00', b'1', NULL),
+(12, 3, 100, '2019-11-07 00:00:00', '2019-11-19 00:00:00', b'1', NULL),
+(13, 3, 100, '2019-11-08 00:00:00', '2019-11-28 00:00:00', b'1', NULL),
+(14, 3, 100, '2019-11-20 00:00:00', '2019-11-02 00:00:00', b'1', NULL),
+(15, 3, 100, '2019-11-07 00:00:00', '2019-11-29 00:00:00', b'1', NULL),
+(16, 3, 110, '2019-11-07 00:00:00', '2019-11-28 00:00:00', b'1', NULL),
+(17, 3, 110, '2019-11-08 00:00:00', '2019-11-29 00:00:00', b'1', NULL),
+(18, 3, 110, '2019-10-28 00:00:00', '2019-12-06 00:00:00', b'1', NULL),
+(19, 3, 110, '2019-10-29 00:00:00', '2019-11-29 00:00:00', b'1', NULL),
+(20, 3, 110, '2019-11-15 00:00:00', '2019-11-20 00:00:00', b'1', NULL),
+(21, 3, 100, '2019-11-28 00:00:00', '2019-12-06 00:00:00', b'0', '2019-11-29 00:00:00'),
+(22, 3, 110, '2019-11-20 00:00:00', '2019-12-11 00:00:00', b'1', NULL),
+(23, 3, 110, '2019-11-12 00:00:00', '2019-11-23 00:00:00', b'1', NULL),
+(24, 3, 110, '2019-11-07 00:00:00', '2019-11-20 00:00:00', b'1', NULL),
+(25, 3, 110, '2019-11-14 00:00:00', '2019-11-27 00:00:00', b'1', NULL),
+(26, 3, 110, '2019-11-07 00:00:00', '2019-11-27 00:00:00', b'1', NULL),
+(27, 3, 110, '2019-10-28 00:00:00', '2019-11-22 00:00:00', b'1', NULL),
+(28, 3, 110, '2019-11-15 00:00:00', '2019-11-20 00:00:00', b'1', NULL),
+(29, 3, 110, '2019-10-28 00:00:00', '2019-11-28 00:00:00', b'1', NULL),
+(30, 2, 100, '2019-11-01 00:00:00', '2019-12-06 00:00:00', b'1', NULL),
+(31, 1, 200, '2019-11-08 00:00:00', '2019-11-30 00:00:00', b'1', NULL),
+(32, 1, 200, '2019-11-20 00:00:00', '2019-11-29 00:00:00', b'1', NULL);
 
 -- --------------------------------------------------------
 
@@ -200,7 +240,36 @@ CREATE TABLE IF NOT EXISTS `pedidoprov` (
   `Total` float NOT NULL,
   PRIMARY KEY (`PedidoProvID`),
   KEY `ProveedorID` (`ProveedorID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Dumping data for table `pedidoprov`
+--
+
+INSERT INTO `pedidoprov` (`PedidoProvID`, `ProveedorID`, `Fecha`, `Total`) VALUES
+(1, 1, '2019-11-14 00:00:00', 12),
+(2, 1, '2019-11-12 00:00:00', 6),
+(3, 1, '2019-11-15 00:00:00', 6),
+(4, 1, '2019-11-06 00:00:00', 6),
+(5, 1, '2019-11-23 00:00:00', 12),
+(6, 1, '2019-11-06 00:00:00', 6),
+(7, 1, '2019-11-21 00:00:00', 360),
+(8, 1, '2019-11-14 00:00:00', 360),
+(9, 1, '2019-11-08 00:00:00', 18),
+(10, 1, '2019-11-23 00:00:00', 18),
+(11, 1, '2019-11-23 00:00:00', 18),
+(12, 1, '2019-11-23 00:00:00', 18),
+(13, 1, '2019-11-22 00:00:00', 18),
+(14, 1, '2019-11-21 00:00:00', 360),
+(15, 1, '2019-11-22 00:00:00', 0),
+(16, 1, '2019-11-22 00:00:00', 0),
+(17, 1, '2019-11-15 00:00:00', 0),
+(18, 1, '2019-11-08 00:00:00', 0),
+(19, 2, '2019-11-04 00:00:00', 180000),
+(20, 1, '2019-11-20 00:00:00', 0),
+(21, 2, '2019-11-09 00:00:00', 180000),
+(22, 2, '2019-11-05 00:00:00', 180000),
+(23, 2, '2019-11-14 00:00:00', 60);
 
 -- --------------------------------------------------------
 
@@ -218,7 +287,37 @@ CREATE TABLE IF NOT EXISTS `pedidoprovlista` (
   PRIMARY KEY (`PedidoProvListaID`),
   KEY `PedidoProvID` (`PedidoProvID`),
   KEY `InsumoID` (`InsumoID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Dumping data for table `pedidoprovlista`
+--
+
+INSERT INTO `pedidoprovlista` (`PedidoProvListaID`, `PedidoProvID`, `InsumoID`, `Cantidad`, `ImportePorPieza`) VALUES
+(1, 1, 3, 4, 3),
+(2, 2, 3, 2, 3),
+(3, 3, 3, 2, 3),
+(4, 4, 1, 2, 3),
+(5, 5, 1, 2, 3),
+(6, 5, 3, 2, 3),
+(7, 6, 3, 2, 3),
+(8, 7, 4, 6, 60),
+(9, 8, 4, 6, 60),
+(10, 9, 3, 6, 3),
+(11, 10, 3, 6, 3),
+(12, 11, 3, 6, 3),
+(13, 12, 3, 6, 3),
+(14, 13, 3, 6, 3),
+(15, 14, 4, 6, 60),
+(16, 15, 2, 6, 0),
+(17, 16, 2, 9, 0),
+(18, 17, 2, 16, 0),
+(19, 18, 2, 16, 0),
+(20, 19, 4, 3000, 60),
+(21, 20, 2, 3000, 0),
+(22, 21, 4, 3000, 60),
+(23, 22, 4, 3000, 60),
+(24, 23, 4, 1, 60);
 
 -- --------------------------------------------------------
 
@@ -243,7 +342,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
 INSERT INTO `producto` (`ProductoID`, `Nombre`, `Cantidad`, `Precio`, `Stock`) VALUES
 (1, 'sad', 231, 231, 32),
 (2, 'sales', 635, 500, 5),
-(3, 'what', 100, 500, 9);
+(3, 'what', 100, 500, 1212);
 
 -- --------------------------------------------------------
 
@@ -291,14 +390,15 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
   `CorreoElectronico` varchar(256) COLLATE latin1_spanish_ci NOT NULL,
   `Direccion` varchar(256) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`ProveedorID`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Dumping data for table `proveedor`
 --
 
 INSERT INTO `proveedor` (`ProveedorID`, `NombreComercial`, `RazonSocial`, `RFC`, `Telefono`, `CorreoElectronico`, `Direccion`) VALUES
-(1, 'fds', 'sad', 'fsd', 'dfs', 'dfs', 'dfs');
+(1, 'fds', 'sad', 'fsd', 'dfs', 'dfs', 'dfs'),
+(2, 'Otro', 'kash', 'ildf', '34', 'anf', 'df');
 
 -- --------------------------------------------------------
 
@@ -315,16 +415,18 @@ CREATE TABLE IF NOT EXISTS `receta` (
   PRIMARY KEY (`RecetaID`),
   KEY `ProductoID` (`ProductoID`),
   KEY `InsumoID` (`InsumoID`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Dumping data for table `receta`
 --
 
 INSERT INTO `receta` (`RecetaID`, `ProductoID`, `InsumoID`, `Cantidad`) VALUES
-(1, 1, 1, 4),
+(1, 1, 4, 4),
 (2, 2, 3, 3),
-(3, 2, 2, 3);
+(3, 2, 2, 3),
+(4, 3, 3, 4),
+(5, 3, 4, 3);
 
 -- --------------------------------------------------------
 
@@ -387,10 +489,6 @@ CREATE TABLE IF NOT EXISTS `reporte3` (
 ,`Status` bit(1)
 );
 
-ALTER TABLE insumo add column ProveedorID int
-
-ALTER TABLE insumo add FOREIGN KEY (ProveedorID) REFERENCES Proveedor(ProveedorID)
-
 -- --------------------------------------------------------
 
 --
@@ -446,14 +544,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `auth_Key` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `accessToken` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `auth_Key`, `accessToken`) VALUES
-(1, 'ndswii', '123', '', '');
+(1, 'ndswii', '123', '', ''),
+(2, 'chompdron', 'ANDRESKIRITo4', ' 0', '0');
 
 -- --------------------------------------------------------
 
@@ -493,7 +592,7 @@ CREATE TABLE IF NOT EXISTS `venta` (
   `ClienteID` int(11) NOT NULL,
   PRIMARY KEY (`VentaID`),
   KEY `ClienteID` (`ClienteID`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Dumping data for table `venta`
@@ -505,7 +604,8 @@ INSERT INTO `venta` (`VentaID`, `Fecha`, `Total`, `Descuento`, `ClienteID`) VALU
 (3, '2019-10-31 00:00:00', 5555500, NULL, 2),
 (4, '2027-05-12 00:00:00', 0, NULL, 2),
 (5, '2017-05-11 00:00:00', 2500, NULL, 1),
-(6, '2019-11-21 00:00:00', 500, NULL, 2);
+(6, '2019-11-21 00:00:00', 500, NULL, 2),
+(7, '2019-11-13 00:00:00', 500, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -523,7 +623,7 @@ CREATE TABLE IF NOT EXISTS `ventalista` (
   PRIMARY KEY (`DetVentaID`),
   KEY `VentaID` (`VentaID`),
   KEY `ProductoID` (`ProductoID`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Dumping data for table `ventalista`
@@ -535,7 +635,8 @@ INSERT INTO `ventalista` (`DetVentaID`, `VentaID`, `ProductoID`, `Cantidad`, `Pr
 (3, 2, 1, 1, 231),
 (4, 3, 2, 11111, 500),
 (5, 5, 2, 5, 500),
-(6, 6, 3, 1, 500);
+(6, 6, 3, 1, 500),
+(7, 7, 3, 1, 500);
 
 -- --------------------------------------------------------
 
@@ -631,15 +732,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
-
-ALTER TABLE `empleado` ADD `Nombre` VARCHAR(255) NOT NULL AFTER `EmpleadoID`;
-
-<<<<<<< Updated upstream
-=======
-ALTER TABLE insumo add column ProveedorID int
-
-ALTER TABLE insumo add FOREIGN KEY (ProveedorID) REFERENCES Proveedor(ProveedorID)
->>>>>>> Stashed changes
