@@ -117,6 +117,7 @@ AppAsset::register($this);
     <div class="main-wrapper mdc-drawer-app-content">
       <!-- partial:partials/_navbar.html -->
       <header class="mdc-top-app-bar">
+        <img class="logomenu" src="<?=Yii::getAlias('@web')?>/Recursos/ZATEMXI Logo Dorado (2).png">
         <div class="mdc-top-app-bar__row">
           <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button sidebar-toggler">menu</button>
@@ -129,7 +130,7 @@ AppAsset::register($this);
                 <div class="mdc-notched-outline__notch">
                   
                 </div>
-                <div class="mdc-notched-outline__trailing"></div>
+               
               </div>
             </div>
           </div>
