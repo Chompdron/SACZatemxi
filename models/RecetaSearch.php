@@ -17,8 +17,9 @@ class RecetaSearch extends Receta
     public function rules()
     {
         return [
-            [['RecetaID', 'ProductoID', 'InsumoID'], 'integer'],
+            [['RecetaID', 'ProductoID'], 'integer'],
             [['Cantidad'], 'number'],
+            [['InsumoID'], 'string'],
         ];
     }
 
@@ -40,7 +41,9 @@ class RecetaSearch extends Receta
      */
     public function search($params)
     {
-        $query = Receta::find();
+        $query = Receta::find()->join('INNER JOIN',
+                                      'Insumo',
+                                      'Receta.InsumoID = Insumo.InsumoID');
 
         // add conditions that should always apply here
 
@@ -59,11 +62,10 @@ class RecetaSearch extends Receta
         // grid filtering conditions
         $query->andFilterWhere([
             'RecetaID' => $this->RecetaID,
-            'ProductoID' => $this->ProductoID,
             'InsumoID' => $this->InsumoID,
             'Cantidad' => $this->Cantidad,
-        ]);
-
+        ])->andFilterWhere(['like', 'Descripcion', $this->ProductoID]);
+        
         return $dataProvider;
     }
 }

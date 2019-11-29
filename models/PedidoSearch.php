@@ -17,8 +17,9 @@ class PedidoSearch extends Pedido
     public function rules()
     {
         return [
-            [['PedidoID', 'ProductoID'], 'integer'],
+            [['PedidoID'], 'integer'],
             [['UnidadXLote'], 'number'],
+            [['ProductoID'], 'string'],
             [['FechaInicio', 'FechaFin', 'FechaStatusFin'], 'safe'],
             [['Status'], 'boolean'],
         ];
@@ -42,7 +43,9 @@ class PedidoSearch extends Pedido
      */
     public function search($params)
     {
-        $query = Pedido::find();
+        $query = Pedido::find()->join('INNER JOIN',
+                                      'Producto',
+                                      'Pedido.ProductoID = Producto.ProductoID');
 
         // add conditions that should always apply here
 
@@ -61,13 +64,12 @@ class PedidoSearch extends Pedido
         // grid filtering conditions
         $query->andFilterWhere([
             'PedidoID' => $this->PedidoID,
-            'ProductoID' => $this->ProductoID,
             'UnidadXLote' => $this->UnidadXLote,
             'FechaInicio' => $this->FechaInicio,
             'FechaFin' => $this->FechaFin,
             'Status' => $this->Status,
             'FechaStatusFin' => $this->FechaStatusFin,
-        ]);
+        ])->andFilterWhere(['like', 'Nombre', $this->ProductoID]);
 
         return $dataProvider;
     }

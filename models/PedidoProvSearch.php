@@ -17,7 +17,8 @@ class PedidoProvSearch extends PedidoProv
     public function rules()
     {
         return [
-            [['PedidoProvID', 'ProveedorID'], 'integer'],
+            [['PedidoProvID'], 'integer'],
+            [['ProveedorID'], 'string'],
             [['Fecha'], 'safe'],
             [['Total'], 'number'],
         ];
@@ -41,7 +42,9 @@ class PedidoProvSearch extends PedidoProv
      */
     public function search($params)
     {
-        $query = PedidoProv::find();
+        $query = PedidoProv::find()->join('INNER JOIN',
+                                      'Proveedor',
+                                      'PedidoProv.ProveedorID = Proveedor.ProveedorID');;
 
         // add conditions that should always apply here
 
@@ -60,10 +63,9 @@ class PedidoProvSearch extends PedidoProv
         // grid filtering conditions
         $query->andFilterWhere([
             'PedidoProvID' => $this->PedidoProvID,
-            'ProveedorID' => $this->ProveedorID,
             'Fecha' => $this->Fecha,
             'Total' => $this->Total,
-        ]);
+        ])->andFilterWhere(['like', 'NombreComercial', $this->ProveedorID]);
 
         return $dataProvider;
     }

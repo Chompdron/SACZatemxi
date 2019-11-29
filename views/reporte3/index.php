@@ -23,16 +23,30 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
-            [ 'attribute' => 'clave',
+                       
+            'PedidoID',
+             [ 'attribute' => 'ProductoID',
                 'format'=>'raw',
               'value'=>function($model){
-        
+                
+                return  $model->producto->Nombre ;
               }
             ],
-            
-            'PedidoID',
-            'ProductoID',
-            'Status',
+             [ 'attribute' => 'Status',
+                'format'=>'raw',
+              'value'=>function($model){
+                
+                $str = ' ';
+              
+                if($model->Status > 0){
+                  $str .= 'En proceso';
+                }if($model->Status == 0){
+                  $str .= 'Finalizado';
+                }
+                return  $str;
+                        
+              }
+            ],
 
 
             //['class' => 'yii\grid\ActionColumn'],

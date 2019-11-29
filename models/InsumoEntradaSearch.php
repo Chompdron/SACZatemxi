@@ -17,11 +17,10 @@ class InsumoEntradaSearch extends InsumoEntrada
     public function rules()
     {
        return [
-            [['PedidoProvID', 'ProveedorID', 'InsumoID'], 'integer'],
-            [['ProveedorID', 'Fecha', 'Total', 'Descripcion', 'Cantidad'], 'required'],
+            [['PedidoProvID', 'ProveedorID'], 'integer'],
             [['Fecha'], 'safe'],
             [['Total', 'Cantidad'], 'number'],
-            [['Descripcion'], 'string', 'max' => 256],
+            [['Descripcion','ProveedorID', 'Fecha', 'Total', 'Descripcion', 'Cantidad', 'InsumoID'], 'string', 'max' => 256],
         ];
     }
 
@@ -66,7 +65,7 @@ class InsumoEntradaSearch extends InsumoEntrada
             'Fecha' => $this->Fecha,
         ]);
 
-        $query->andFilterWhere(['like', 'Nombre', $this->Nombre]);
+        $query->andFilterWhere(['like', 'Descripcion', $this->Descripcion]);
 
         return $dataProvider;
     }

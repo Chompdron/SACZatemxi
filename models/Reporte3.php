@@ -44,4 +44,7 @@ class Reporte3 extends \yii\db\ActiveRecord
             'Status' => 'Status',
         ];
     }
+        public function getProducto(){
+        return $this->hasOne(Producto::className(),['ProductoID'=>'ProductoID'])->one();  
+      }
 }

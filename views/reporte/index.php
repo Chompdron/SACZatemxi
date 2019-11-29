@@ -23,17 +23,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
-            [ 'attribute' => 'clave',
-                'format'=>'raw',
-              'value'=>function($model){
-        
-              }
-            ],
             'VentaID', 
-            'ClienteID',
+            'NombreComercial', 
             'Fecha',
             'Total', 
-            'NombreComercial', 
             'RazonSocial',
             'Descuento',
 

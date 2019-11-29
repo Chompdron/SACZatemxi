@@ -55,4 +55,5 @@ class Reporte extends \yii\db\ActiveRecord
             'RazonSocial' => 'Razón Social',
         ];
     }
+      
 }
