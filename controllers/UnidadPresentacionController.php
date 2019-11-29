@@ -8,6 +8,7 @@ use app\models\UnidadPresentacionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * UnidadPresentacionController implements the CRUD actions for UnidadPresentacion model.
@@ -19,12 +20,20 @@ class UnidadPresentacionController extends Controller
      */
     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+          return [
+            'access' => [
+                'class'        => AccessControl::className(),
+                'rules'        => [
+                    [
+                        'actions' => [],
+                        'allow'   => true,
+                        'roles'   => ['@'],
+                    ],
+
                 ],
+                'denyCallback' => function () {
+                    return Yii::$app->response->redirect(['/']);
+                },
             ],
         ];
     }
@@ -123,5 +132,9 @@ class UnidadPresentacionController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+     public function init()
+    {
+        Yii::$app->language = 'es';
     }
 }

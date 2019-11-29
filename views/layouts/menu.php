@@ -79,25 +79,19 @@ use yii\helpers\Url;
         <nav class="mdc-list mdc-drawer-submenu">
             <div class="mdc-list-item mdc-drawer-item">
                 <a class="mdc-drawer-link" href="<?=Url::to(["/reporte/index"])?>">
-                    REPORTE1
-                </a> </div>
-                <div class="mdc-list-item mdc-drawer-item">
-                <a class="mdc-drawer-link" href="<?=Url::to(["/reporte1/index"])?>">
-                    REPORTE2
-                </a> </div>
-                <div class="mdc-list-item mdc-drawer-item">
-                <a class="mdc-drawer-link" href="<?=Url::to(["/reporte2/index"])?>">
-                    REPORTE3
-                </a> </div>
-                <div class="mdc-list-item mdc-drawer-item">
-                <a class="mdc-drawer-link" href="<?=Url::to(["/reporte3/index"])?>">
-                    REPORTE4
+
+                    VENTAS
                 </a>
-                
+            </div><div class="mdc-list-item mdc-drawer-item">
+                <a class="mdc-drawer-link" href="<?=Url::to(["/reporte1/index"])?>">
+                    ADQUISICIÓN
+                </a>
+            </div><div class="mdc-list-item mdc-drawer-item">
+                <a class="mdc-drawer-link" href="<?=Url::to(["/reporte3/index"])?>">
+                    PEDIDOS
+                </a>
             </div>
-           
         </nav>
-    </div>
 </div>
 <div class="mdc-list-item mdc-drawer-item">
     <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="usuario">
