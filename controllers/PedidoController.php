@@ -72,16 +72,22 @@ class PedidoController extends Controller
             $receta = $model->getInsumos();
             foreach($receta as $r){
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 $insumoid = $r->InsumoID;
                 $s = new Insumo();
                 $insumo = $s->findModel($insumoid);
                 $insumo->Stock -= $r->Cantidad;
 =======
+=======
+>>>>>>> Stashed changes
 
                 $insumo = Insumo::find()->where(["InsumoID" => $r->InsumoID])->one();
                 $insumo->Stock -= ($r->Cantidad)*$model->UnidadXLote;
                 
                 $insumo->save(false);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             }
             $model->save();

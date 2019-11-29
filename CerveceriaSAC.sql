@@ -637,3 +637,9 @@ COMMIT;
 
 ALTER TABLE `empleado` ADD `Nombre` VARCHAR(255) NOT NULL AFTER `EmpleadoID`;
 
+<<<<<<< Updated upstream
+=======
+ALTER TABLE insumo add column ProveedorID int
+
+ALTER TABLE insumo add FOREIGN KEY (ProveedorID) REFERENCES Proveedor(ProveedorID)
+>>>>>>> Stashed changes

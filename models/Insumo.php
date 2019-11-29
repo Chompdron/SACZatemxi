@@ -58,5 +58,7 @@ class Insumo extends \yii\db\ActiveRecord
     public function getProveedor(){
         return $this->hasOne(Proveedor::className(),['ProveedorID'=>'ProveedorID'])->one();
       }
+
+     
 }
 
