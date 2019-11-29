@@ -43,13 +43,13 @@ class Cliente extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ClienteID' => 'Cliente ID',
+            'ClienteID' => 'Cliente',
             'NombreComercial' => 'Nombre Comercial',
-            'RazonSocial' => 'Razon Social',
-            'RFC' => 'Rfc',
-            'Direccion' => 'Direccion',
-            'Telefono' => 'Telefono',
-            'HorarioEntrega' => 'Horario Entrega',
+            'RazonSocial' => 'Razón Social',
+            'RFC' => 'RFC',
+            'Direccion' => 'Dirección',
+            'Telefono' => 'Teléfono',
+            'HorarioEntrega' => 'Horario de Entrega',
         ];
     }
 }

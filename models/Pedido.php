@@ -33,7 +33,7 @@ class Pedido extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ProductoID', 'UnidadXLote', 'FechaInicio', 'FechaFin', 'FechaStatusFin'], 'required'],
+            [['ProductoID', 'UnidadXLote', 'FechaInicio', 'FechaFin'], 'required'],
             [['ProductoID'], 'integer'],
             [['UnidadXLote'], 'number'],
             [['FechaInicio', 'FechaFin', 'FechaStatusFin'], 'safe'],
@@ -50,11 +50,11 @@ class Pedido extends \yii\db\ActiveRecord
         return [
             'PedidoID' => 'Pedido',
             'ProductoID' => 'Producto',
-            'UnidadXLote' => 'Unidad X Lote',
-            'FechaInicio' => 'Fecha Inicio',
-            'FechaFin' => 'Fecha Fin',
+            'UnidadXLote' => 'Unidades en el Lote',
+            'FechaInicio' => 'Fecha de Inicio',
+            'FechaFin' => 'Fecha de Fin',
             'Status' => 'Estatus',
-            'FechaStatusFin' => 'Fecha Estatus Fin',
+            'FechaStatusFin' => 'Fecha de Finalización Real',
         ];
     }
 
@@ -66,7 +66,6 @@ class Pedido extends \yii\db\ActiveRecord
       }
 
     public function getInsumos(){
-        $producto = $this->hasOne(Producto::className(),['ProductoID'=>'ProductoID'])->one(); 
         return $receta = $this->hasOne(Receta::className(),['ProductoID'=>'ProductoID'])->all();
         
     }

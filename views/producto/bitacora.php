@@ -9,29 +9,16 @@ use kartik\grid\GridView;
 
 $this->title = 'Bitácora del Producto: ' . $model->ProductoID;
 
-        $mProducto = \app\models\Producto::find()->orderBy('Nombre')->all();
+        /* $mProducto = \app\models\Producto::find()->orderBy('Nombre')->all();
         $cmbProducto = \yii\helpers\ArrayHelper::map($mProducto, 'ProductoID', 'Nombre');
 $model 
-    = new \app\models\Producto();     
+    = new \app\models\Producto();      */
 
 ?>
 <div class="producto-bitacora">
 
-    <div class="col-md-4 col-lg-4">
-      <?php $form = ActiveForm::begin(); ?>
-     <?=$form->field($model, 'ProductoID')->widget(Select2::classname(), [
-                  
-                    'value'    => $model->ProductoID,
-                    'data'     => $cmbProducto, 'options'  => ['placeholder' => 'Seleccione el proveedor...'],
-                    'language' => 'es', 'pluginOptions' => ['allowClear' => true]])?>
-         <?php ActiveForm::end(); ?>
-    </div>
-
+<h1>Bitácora de entradas</h1>
     
-    
-    <div class="form-group">
-        <?= Html::a('Regresar',["index"], ['class' => 'btn btn-success']) ?>
-    </div>
 <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -71,4 +58,8 @@ $model
     ]); ?>
 
 </div>
+
+<div class="form-group">
+        <?= Html::a('Regresar',["index"], ['class' => 'btn btn-success']) ?>
+    </div>
 

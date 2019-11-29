@@ -5,9 +5,12 @@ namespace app\controllers;
 use Yii;
 use app\models\Receta;
 use app\models\RecetaSearch;
+use app\models\Producto;
+use app\models\ProductoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * RecetaController implements the CRUD actions for Receta model.
@@ -19,12 +22,20 @@ class RecetaController extends Controller
      */
     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+          return [
+            'access' => [
+                'class'        => AccessControl::className(),
+                'rules'        => [
+                    [
+                        'actions' => [],
+                        'allow'   => true,
+                        'roles'   => ['@'],
+                    ],
+
                 ],
+                'denyCallback' => function () {
+                    return Yii::$app->response->redirect(['/']);
+                },
             ],
         ];
     }
@@ -35,7 +46,7 @@ class RecetaController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new RecetaSearch();
+        $searchModel = new ProductoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -123,5 +134,21 @@ class RecetaController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    
+        public function actionRecetario($id)
+    {
+        $searchModel = new RecetaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->Where('ProductoID = '.$id);
+        return $this->render('recetario', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'id'=>$id,
+        ]);
+    }
+    public function init()
+    {
+        Yii::$app->language = 'es';
     }
 }

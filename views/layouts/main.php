@@ -65,32 +65,7 @@ AppAsset::register($this);
             
             
               <div class="mdc-expansion-panel" id="sample-page-submenu">
-                <nav class="mdc-list mdc-drawer-submenu">
-                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="pages/samples/blank-page.html">
-                      Blank Page
-                    </a>
-                  </div>
-                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="pages/samples/403.html">
-                      403
-                    </a>
-                  </div>
-                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="pages/samples/404.html">
-                      404
-                    </a>
-                  </div>
-                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="pages/samples/500.html">
-                      500
-                    </a>
-                  </div>
-                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="pages/samples/505.html">
-                      505
-                    </a>
-                  </div>
+                <nav class="mdc-list mdc-drawer-submenu"> 
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="pages/samples/login.html">
                       Login

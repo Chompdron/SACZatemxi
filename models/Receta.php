@@ -40,10 +40,16 @@ class Receta extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'RecetaID' => 'Receta ID',
-            'ProductoID' => 'Producto ID',
-            'InsumoID' => 'Insumo ID',
-            'Cantidad' => 'Cantidad',
+            'RecetaID' => '# Receta',
+            'ProductoID' => 'Producto',
+            'InsumoID' => 'Insumo',
+            'Cantidad' => 'Cantidad por cada 100 piezas',
         ];
     }
+    public function getProducto(){
+        return $this->hasOne(Producto::className(),['ProductoID'=>'ProductoID'])->one();  
+      }
+    public function getInsumo(){
+        return $this->hasOne(Insumo::className(),['InsumoID'=>'InsumoID'])->one();
+      }
 }

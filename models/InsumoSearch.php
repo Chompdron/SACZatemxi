@@ -17,9 +17,10 @@ class InsumoSearch extends Insumo
     public function rules()
     {
         return [
-            [['InsumoID', 'UnidadPresentacionID'], 'integer'],
-            [['Descripcion'], 'safe'],
-            [['Stock', 'PrecioXUnidad'], 'number'],
+            [['InsumoID', 'Stock'], 'integer'],
+            [['ProveedorID', 'Descripcion'], 'string'],
+            [['UnidadPresentacionID'], 'safe'],
+            [['PrecioXUnidad'], 'number'],
         ];
     }
 
@@ -41,7 +42,12 @@ class InsumoSearch extends Insumo
      */
     public function search($params)
     {
-        $query = Insumo::find();
+        $query = Insumo::find()->join('INNER JOIN',
+                                      'Proveedor',
+                                      'Insumo.ProveedorID = Proveedor.ProveedorID');
+        $query->join('INNER JOIN',
+                                      'UnidadPresentacion',
+                                      'Insumo.UnidadPresentacionID = UnidadPresentacion.UnidadPresentacionID');
 
         // add conditions that should always apply here
 
@@ -60,12 +66,11 @@ class InsumoSearch extends Insumo
         // grid filtering conditions
         $query->andFilterWhere([
             'InsumoID' => $this->InsumoID,
-            'UnidadPresentacionID' => $this->UnidadPresentacionID,
             'Stock' => $this->Stock,
             'PrecioXUnidad' => $this->PrecioXUnidad,
-        ]);
-
-        $query->andFilterWhere(['like', 'Descripcion', $this->Descripcion]);
+        ])->andFilterWhere(['like', 'Descripcion', $this->Descripcion]);
+        $query->andFilterWhere(['like', 'NombreComercial', $this->ProveedorID]);
+        $query->andFilterWhere(['like', 'UnidadPresentacion.Nombre', $this->UnidadPresentacionID]);
 
         return $dataProvider;
     }

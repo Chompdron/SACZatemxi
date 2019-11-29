@@ -9,6 +9,7 @@ use app\models\PedidoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * PedidoController implements the CRUD actions for Pedido model.
@@ -20,16 +21,23 @@ class PedidoController extends Controller
      */
     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+          return [
+            'access' => [
+                'class'        => AccessControl::className(),
+                'rules'        => [
+                    [
+                        'actions' => [],
+                        'allow'   => true,
+                        'roles'   => ['@'],
+                    ],
+
                 ],
+                'denyCallback' => function () {
+                    return Yii::$app->response->redirect(['/']);
+                },
             ],
         ];
     }
-
     /**
      * Lists all Pedido models.
      * @return mixed
@@ -66,14 +74,31 @@ class PedidoController extends Controller
     public function actionCreate()
     {
         $model = new Pedido();
-
+        
         if ($model->load(Yii::$app->request->post()) ) {
+            $model->Status = true;
             $receta = $model->getInsumos();
             foreach($receta as $r){
-                $insumo = Insumo->findModel($r->'InsumoID');
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+                $insumoid = $r->InsumoID;
+                $s = new Insumo();
+                $insumo = $s->findModel($insumoid);
                 $insumo->Stock -= $r->Cantidad;
+=======
+=======
+>>>>>>> Stashed changes
+
+                $insumo = Insumo::find()->where(["InsumoID" => $r->InsumoID])->one();
+                $insumo->Stock -= ($r->Cantidad)*$model->UnidadXLote;
+                
+                $insumo->save(false);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
             }
-            $model->save()
+            $model->save();
             return $this->redirect(['view', 'id' => $model->PedidoID]);
         }
 
@@ -155,5 +180,9 @@ class PedidoController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+     public function init()
+    {
+        Yii::$app->language = 'es';
     }
 }
