@@ -93,6 +93,7 @@ use yii\helpers\Url;
             </div>
         </nav>
 </div>
+</div>
 <div class="mdc-list-item mdc-drawer-item">
     <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="usuario">
         <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="	true">dashboard</i>
