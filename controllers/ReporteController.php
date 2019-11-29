@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\ReporteSearch;
+use yii\filters\AccessControl;
 
 
 /**
@@ -20,18 +21,30 @@ class ReporteController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+          return [
+            'access' => [
+                'class'        => AccessControl::className(),
+                'rules'        => [
+                    [
+                        'actions' => [],
+                        'allow'   => true,
+                        'roles'   => ['@'],
+                    ],
+
                 ],
+                'denyCallback' => function () {
+                    return Yii::$app->response->redirect(['/']);
+                },
             ],
         ];
     }
 
+    
+    function init(){
+        Yii::$app->language = 'es';
+    }
     /**
      * Lists all Cliente models.
      * @return mixed
@@ -46,4 +59,5 @@ class ReporteController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    
 }

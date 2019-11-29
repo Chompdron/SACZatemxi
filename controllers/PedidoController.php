@@ -9,6 +9,7 @@ use app\models\PedidoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * PedidoController implements the CRUD actions for Pedido model.
@@ -20,16 +21,23 @@ class PedidoController extends Controller
      */
     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+          return [
+            'access' => [
+                'class'        => AccessControl::className(),
+                'rules'        => [
+                    [
+                        'actions' => [],
+                        'allow'   => true,
+                        'roles'   => ['@'],
+                    ],
+
                 ],
+                'denyCallback' => function () {
+                    return Yii::$app->response->redirect(['/']);
+                },
             ],
         ];
     }
-
     /**
      * Lists all Pedido models.
      * @return mixed
@@ -157,5 +165,9 @@ class PedidoController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+     public function init()
+    {
+        Yii::$app->language = 'es';
     }
 }

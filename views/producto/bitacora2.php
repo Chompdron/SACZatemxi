@@ -14,7 +14,7 @@ $model
     = new \app\models\Producto();     
 ?>
 <div class="producto-bitacora">
-    <h1>Bitácora de entradas</h1>
+    <h1>Bitácora de salidas</h1>
 <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

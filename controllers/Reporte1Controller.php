@@ -10,7 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Reporte1Search;
-
+use yii\filters\AccessControl;
 
 /**
  * ClienteController implements the CRUD actions for Cliente model.
@@ -20,14 +20,23 @@ class Reporte1Controller extends Controller
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+    
+     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+          return [
+            'access' => [
+                'class'        => AccessControl::className(),
+                'rules'        => [
+                    [
+                        'actions' => [],
+                        'allow'   => true,
+                        'roles'   => ['@'],
+                    ],
+
                 ],
+                'denyCallback' => function () {
+                    return Yii::$app->response->redirect(['/']);
+                },
             ],
         ];
     }
@@ -45,5 +54,9 @@ class Reporte1Controller extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+    public function init()
+    {
+        Yii::$app->language = 'es';
     }
 }

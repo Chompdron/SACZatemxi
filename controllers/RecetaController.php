@@ -10,6 +10,7 @@ use app\models\ProductoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * RecetaController implements the CRUD actions for Receta model.
@@ -21,12 +22,20 @@ class RecetaController extends Controller
      */
     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+          return [
+            'access' => [
+                'class'        => AccessControl::className(),
+                'rules'        => [
+                    [
+                        'actions' => [],
+                        'allow'   => true,
+                        'roles'   => ['@'],
+                    ],
+
                 ],
+                'denyCallback' => function () {
+                    return Yii::$app->response->redirect(['/']);
+                },
             ],
         ];
     }
@@ -137,5 +146,9 @@ class RecetaController extends Controller
             'dataProvider' => $dataProvider,
             'id'=>$id,
         ]);
+    }
+    public function init()
+    {
+        Yii::$app->language = 'es';
     }
 }

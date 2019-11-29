@@ -79,15 +79,18 @@ use yii\helpers\Url;
         <nav class="mdc-list mdc-drawer-submenu">
             <div class="mdc-list-item mdc-drawer-item">
                 <a class="mdc-drawer-link" href="<?=Url::to(["/reporte/index"])?>">
-                    INDEX
+                    VENTAS
+                </a>
+            </div><div class="mdc-list-item mdc-drawer-item">
+                <a class="mdc-drawer-link" href="<?=Url::to(["/reporte1/index"])?>">
+                    ADQUISICIÓN
+                </a>
+            </div><div class="mdc-list-item mdc-drawer-item">
+                <a class="mdc-drawer-link" href="<?=Url::to(["/reporte3/index"])?>">
+                    PEDIDOS
                 </a>
             </div>
-            <div class="mdc-list-item mdc-drawer-item">
-                <a class="mdc-drawer-link" href="<?=Url::to(["/reporte"])?>">
-                    OTRO I GUESS
-                </a>
         </nav>
-    </div>
 </div>
 <div class="mdc-list-item mdc-drawer-item">
     <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="usuario">

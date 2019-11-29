@@ -8,6 +8,7 @@ use app\models\EmpleadoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * EmpleadoController implements the CRUD actions for Empleado model.
@@ -20,11 +21,19 @@ class EmpleadoController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+            'access' => [
+                'class'        => AccessControl::className(),
+                'rules'        => [
+                    [
+                        'actions' => [],
+                        'allow'   => true,
+                        'roles'   => ['@'],
+                    ],
+
                 ],
+                'denyCallback' => function () {
+                    return Yii::$app->response->redirect(['/']);
+                },
             ],
         ];
     }

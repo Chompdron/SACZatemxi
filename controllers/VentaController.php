@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Producto;
 use app\models\VentaLista;
+use yii\filters\AccessControl;
 
 /**
  * VentaController implements the CRUD actions for Venta model.
@@ -19,18 +20,25 @@ class VentaController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+          return [
+            'access' => [
+                'class'        => AccessControl::className(),
+                'rules'        => [
+                    [
+                        'actions' => [],
+                        'allow'   => true,
+                        'roles'   => ['@'],
+                    ],
+
                 ],
+                'denyCallback' => function () {
+                    return Yii::$app->response->redirect(['/']);
+                },
             ],
         ];
     }
-
     /**
      * Lists all Venta models.
      * @return mixed
@@ -234,6 +242,10 @@ class VentaController extends Controller
         ]);
         
         
+    }
+    public function init()
+    {
+        Yii::$app->language = 'es';
     }
     
 }
