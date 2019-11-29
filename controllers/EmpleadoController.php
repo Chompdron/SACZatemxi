@@ -5,10 +5,12 @@ namespace app\controllers;
 use Yii;
 use app\models\Empleado;
 use app\models\EmpleadoSearch;
+use app\models\Fechaconsulta;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use kartik\mpdf\Pdf;
 
 /**
  * EmpleadoController implements the CRUD actions for Empleado model.
@@ -132,5 +134,61 @@ class EmpleadoController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    
+        public function actionFechanom($id)
+    {
+         $model = new Fechaconsulta();
+        if ($model->load(Yii::$app->request->post())) {
+            $_SESSION["Fechas"] = $model;
+            $_SESSION["Empleado"] = Empleado::findOne($id);
+            return $this->redirect(['nomina']);
+        }
+
+        return $this->render('fechanom', [
+            'model' => $model,
+        ]);
+        
+        return $this->render('prodventas.php',[]);
+    }
+    public function actionNomina()
+    {
+        return $this->render('nomina.php',[]);
+    }
+    
+        public function actionPdf()
+    {
+
+          $content = $this->renderPartial('nomina');
+    
+            // setup kartik\mpdf\Pdf component
+            $pdf = new Pdf([
+                // set to use core fonts only
+                'mode' => Pdf::MODE_CORE, 
+                // A4 paper format
+                'format' => Pdf::FORMAT_A4, 
+                // portrait orientation
+                'orientation' => Pdf::ORIENT_PORTRAIT, 
+                // stream to browser inline
+                'destination' => Pdf::DEST_BROWSER, 
+                // your html content input
+                'content' => $content,  
+                // format content from your own css file if needed or use the
+                // enhanced bootstrap css built by Krajee for mPDF formatting 
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
+                // any css to be embedded if required
+                'cssInline' => '.kv-heading-1{font-size:18px}', 
+                 // set mPDF properties on the fly
+                'options' => ['title' => 'Título de tu reporte'],
+                 // call mPDF methods on the fly
+                'methods' => [ 
+                    'SetHeader'=>['NÓMINA'], 
+                    'SetFooter'=>['{PAGENO}'],
+                ]
+            ]);
+            
+            // return the pdf output as per the destination setting
+            return $pdf->render(); 
+
     }
 }

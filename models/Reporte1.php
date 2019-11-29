@@ -43,11 +43,11 @@ class Reporte1 extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'DetVentaID' => 'Det Venta ID',
-            'VentaID' => 'Venta ID',
-            'ProductoID' => 'Producto ID',
+            'DetVentaID' => '# Detalle Venta',
+            'VentaID' => '# Venta',
+            'ProductoID' => 'Producto',
             'Cantidad' => 'Cantidad',
-            'PrecioVenta' => 'Precio Venta',
+            'PrecioVenta' => 'Precio de Venta',
             'Fecha' => 'Fecha',
         ];
     }

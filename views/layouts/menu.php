@@ -79,6 +79,7 @@ use yii\helpers\Url;
         <nav class="mdc-list mdc-drawer-submenu">
             <div class="mdc-list-item mdc-drawer-item">
                 <a class="mdc-drawer-link" href="<?=Url::to(["/reporte/index"])?>">
+
                     VENTAS
                 </a>
             </div><div class="mdc-list-item mdc-drawer-item">

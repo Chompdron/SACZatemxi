@@ -42,11 +42,11 @@ class Venta extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'VentaID' => 'ID de Venta',
+            'VentaID' => '# Venta',
             'Fecha' => 'Fecha',
             'Total' => 'Total',
             'Descuento' => 'Descuento',
-            'ClienteID' => 'ID del Cliente',
+            'ClienteID' => 'Cliente',
         ];
     }
 

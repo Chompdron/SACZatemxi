@@ -9,6 +9,9 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\VentaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+unset($_SESSION["venta"]);
+unset($_SESSION["detv"]);
+
 $this->title = 'Ventas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>

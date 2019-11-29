@@ -387,6 +387,10 @@ CREATE TABLE IF NOT EXISTS `reporte3` (
 ,`Status` bit(1)
 );
 
+ALTER TABLE insumo add column ProveedorID int
+
+ALTER TABLE insumo add FOREIGN KEY (ProveedorID) REFERENCES Proveedor(ProveedorID)
+
 -- --------------------------------------------------------
 
 --
@@ -627,3 +631,15 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+ALTER TABLE `empleado` ADD `Nombre` VARCHAR(255) NOT NULL AFTER `EmpleadoID`;
+
+<<<<<<< Updated upstream
+=======
+ALTER TABLE insumo add column ProveedorID int
+
+ALTER TABLE insumo add FOREIGN KEY (ProveedorID) REFERENCES Proveedor(ProveedorID)
+>>>>>>> Stashed changes

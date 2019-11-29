@@ -33,12 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
               'value'=>function($model){
                 
                 return  Html::a("Actualizar",['/empleado/update','id'=>$model->EmpleadoID],["options"=>["data-pjax"=>"0"]]).
-                        '<a href="'.Url::to(['/empleado/view','id'=>$model->EmpleadoID]).'"  data-pjax="0">'." Ver".'</a>';
+                        '<a href="'.Url::to(['/empleado/view','id'=>$model->EmpleadoID]).'"  data-pjax="0">'." Ver ".'</a>'.
+                        '<a href="'.Url::to(['/empleado/fechanom','id'=>$model->EmpleadoID]).'"  data-pjax="0">'." NÓMINA ".'</a>';
               }
          ],
             'EmpleadoID',
-            'HorasxSem',
-            'PagoxHrs',
+            'Nombre',
             [ 'attribute' => 'UserID',
                 'format'=>'raw',
               'value'=>function($model){

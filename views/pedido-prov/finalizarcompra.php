@@ -1,26 +1,22 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
-use app\models\PedidoProvLista;
+use yii\widgets\ActiveForm;
+use kartik\select2\Select2; // utilizados para select2s
 use app\models\Insumo;
 use app\models\Proveedor;
 
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Venta */
-
-$this->title = $model->PedidoProvID;
-$this->params['breadcrumbs'][] = ['label' => 'Ventas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
-$detc = PedidoProvLista::find()->where(["PedidoProvID"=>$model->PedidoProvID])->all();
-$Proveedor = Proveedor::findone($model->ProveedorID);
-
+/* @var $form yii\widgets\ActiveForm */
+    $Proveedor = Proveedor::findone($_SESSION["compra"]->ProveedorID);
+	$mProveedor = \app\models\Proveedor::find()->orderBy('NombreComercial')->all();
+    $cmbProveedor = \yii\helpers\ArrayHelper::map($mProveedor, 'ProveedorID', 'NombreComercial');
 ?>
-<div class="venta-view">
 
-    <h1>TICKET #<?= Html::encode($this->title) ?></h1>
-    
+<?php $form = ActiveForm::begin(); ?>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -30,12 +26,12 @@ $Proveedor = Proveedor::findone($model->ProveedorID);
     </thead>
     <tbody>
     <tr>
-      <td><?=$model->Fecha?></td>
+      <td><?=$_SESSION["compra"]->Fecha?></td>
       <td><?=$Proveedor->NombreComercial?></td>
     </tr>
     </tbody>
 </table>
-  
+    
 <table class="table table-striped">
     <thead>
         <tr>
@@ -48,7 +44,7 @@ $Proveedor = Proveedor::findone($model->ProveedorID);
     </thead>
     <tbody>
     <?php $totalT=0;
-    foreach ($detc as $detallev) {
+    foreach ($_SESSION["detc"] as $detallev) {
         $ProdCompra = Insumo::findone($detallev->InsumoID);
         if(isset($num)){$num +=1;}else{$num =1;}
         $total = ($detallev->Cantidad) * ($detallev->ImportePorPieza);
@@ -61,6 +57,8 @@ $Proveedor = Proveedor::findone($model->ProveedorID);
         echo "<td>".$total." $</td>";
         echo "</tr>";
     }
+    
+    $_SESSION["compra"]->Total=$totalT;
     //echo var_dump($detallev);
     ?> 
     <tr>
@@ -79,9 +77,14 @@ $Proveedor = Proveedor::findone($model->ProveedorID);
     </tr>
     </tbody>
 </table>
-    <div class="col-md-4">
-        <?= Html::a("IMPRIMIR",['/pedido-prov/pdf','id'=>$model->PedidoProvID],["options"=>["data-pjax"=>"0"]]); ?>
+
+    <div class="col-md-6">
+        <?= Html::a('Regresar',["nuevacompra"], ['class' => 'btn btn-success']) ?>
     </div>
 
-
-</div>
+   
+    <div class="col-md-6">
+        <?= Html::submitButton('FINALIZAR VENTA', ['class' => 'btn btn-success']) ?>
+    </div>
+    
+    <?php ActiveForm::end(); ?>

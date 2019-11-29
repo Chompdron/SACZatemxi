@@ -43,7 +43,7 @@ class Pedidoprovlista extends \yii\db\ActiveRecord
         return [
             'PedidoProvListaID' => 'Pedido Prov Lista ID',
             'PedidoProvID' => 'Pedido Prov ID',
-            'InsumoID' => 'Insumo ID',
+            'InsumoID' => 'Insumo',
             'Cantidad' => 'Cantidad',
             'ImportePorPieza' => 'Importe Por Pieza',
         ];
