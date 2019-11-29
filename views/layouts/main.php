@@ -71,19 +71,15 @@ AppAsset::register($this);
                       Login
                     </a>
                   </div>
-                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="pages/samples/register.html">
-                      Register
-                    </a>
-                  </div>
+                  
                 </nav>
               </div>
             </div>      
           </nav>
         </div>
         <div class="profile-actions">
-          <a href="javascript:;">Settings</a>
-          <span class="divider"></span>
+          
+          
           <a href="<?=Yii::getAlias('@web')?>/site/logout">Logout</a>
         </div>
 
@@ -148,7 +144,7 @@ AppAsset::register($this);
                       <i class="mdi mdi-alert-circle-outline text-primary"></i>
                     </div>
                     <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="item-subject font-weight-normal">Settings</h6>
+                      
                     </div>
                   </li>
                   <li class="mdc-list-item" role="menuitem">
@@ -264,7 +260,7 @@ AppAsset::register($this);
                       <i class="mdi mdi-logout-variant text-primary"></i>                      
                     </div>
                     <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="item-subject font-weight-normal">Logout</h6>
+                      <h6 class="item-subject font-weight-normal" class="btn btn-link logout">Logout(logout)</h6>
                     </div>
                   </li>
                 </ul>
