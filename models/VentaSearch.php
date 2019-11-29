@@ -17,8 +17,9 @@ class VentaSearch extends Venta
     public function rules()
     {
         return [
-            [['VentaID', 'ClienteID'], 'integer'],
+            [['VentaID'], 'integer'],
             [['Fecha'], 'safe'],
+            [['ClienteID'], 'string'],
             [['Total', 'Descuento'], 'number'],
         ];
     }
@@ -41,7 +42,9 @@ class VentaSearch extends Venta
      */
     public function search($params)
     {
-        $query = Venta::find();
+        $query = Venta::find()->join('INNER JOIN',
+                                      'Cliente',
+                                      'Venta.ClienteID = Cliente.ClienteID');
 
         // add conditions that should always apply here
 
@@ -63,8 +66,7 @@ class VentaSearch extends Venta
             'Fecha' => $this->Fecha,
             'Total' => $this->Total,
             'Descuento' => $this->Descuento,
-            'ClienteID' => $this->ClienteID,
-        ]);
+        ])->andFilterWhere(['like', 'NombreComercial', $this->ClienteID]);
 
         return $dataProvider;
     }

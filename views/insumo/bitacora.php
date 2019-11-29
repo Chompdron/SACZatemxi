@@ -23,8 +23,14 @@ $model
         'columns' => [
           
             [ 'attribute' => 'InsumoID',
-                'format'=>'raw',
-            ],
+           'format'=>'raw',
+         'value'=>function($model){
+           
+           $Insumo = $model->Insumo;
+             
+           return $Insumo->Descripcion;
+         }
+       ],
 
             
             'Cantidad',

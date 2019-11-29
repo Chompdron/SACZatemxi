@@ -18,7 +18,7 @@ class InsumoSalidaSearch extends InsumoSalida
     {
        return [
             [['InsumoID'], 'integer'],
-            [['FechaInicio', 'UnidadXLote'], 'required'],
+            [['FechaInicio', 'UnidadXLote'], 'string'],
             [['FechaInicio'], 'safe'],
             [['UnidadXLote'], 'number'],
         ];
@@ -65,7 +65,7 @@ class InsumoSalidaSearch extends InsumoSalida
             'UnidadXLote' => $this->UnidadXLote,
         ]);
 
-        $query->andFilterWhere(['like', 'Nombre', $this->Nombre]);
+        $query->andFilterWhere(['like', 'InsumoID', $this->InsumoID]);
 
         return $dataProvider;
     }

@@ -54,4 +54,12 @@ class Insumoentrada extends \yii\db\ActiveRecord
             'Cantidad' => 'Cantidad',
         ];
     }
+        public function getUnidadPresentacion(){
+        return $this->hasOne(Unidadpresentacion::className(),['UnidadPresentacionID'=>'UnidadPresentacionID'])->one(); 
+      }
+    
+    public function getInsumo(){
+        return $this->hasOne(Insumo::className(),['InsumoID'=>'InsumoID'])->one();
+      }
+
 }

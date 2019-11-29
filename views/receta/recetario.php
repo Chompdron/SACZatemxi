@@ -35,15 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 return  Html::a("Actualizar",['/receta/update','id'=>$model->RecetaID],["options"=>["data-pjax"=>"0"]]);
               }
             ],
-            [ 'attribute' => 'ProductoID',
-           'format'=>'raw',
-         'value'=>function($model){
            
-           $Producto = $model->Producto;
-             
-           return $Producto->Nombre;
-         }
-       ],
             [ 'attribute' => 'InsumoID',
            'format'=>'raw',
          'value'=>function($model){

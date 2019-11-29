@@ -45,4 +45,12 @@ class Insumosalida extends \yii\db\ActiveRecord
             'UnidadXLote' => 'Unidades en el lote',
         ];
     }
+    public function getUnidadPresentacion(){
+        return $this->hasOne(Unidadpresentacion::className(),['UnidadPresentacionID'=>'UnidadPresentacionID'])->one(); 
+      }
+    
+    public function getInsumo(){
+        return $this->hasOne(Insumo::className(),['InsumoID'=>'InsumoID'])->one();
+      }
+
 }

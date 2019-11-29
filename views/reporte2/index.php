@@ -7,7 +7,7 @@ use yii\helpers\Url;
 /* @var $searchModel app\models\ProductoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Reporte de Adquisiciòn';
+$this->title = 'Reporte de Adquisición';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="producto-index">
@@ -22,16 +22,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
-            [ 'attribute' => 'clave',
-                'format'=>'raw',
-              'value'=>function($model){
-        
-              }
-            ],
+           
             'InsumoID',
             'Descripcion',
-            'ProveedorID',
             'NombreComercial',
             'Fecha',
 

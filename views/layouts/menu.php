@@ -83,7 +83,7 @@ use yii\helpers\Url;
                 </a>
             </div>
             <div class="mdc-list-item mdc-drawer-item">
-                <a class="mdc-drawer-link" href="<?=Url::to(["/reporte1/index"])?>">
+                <a class="mdc-drawer-link" href="<?=Url::to(["/reporte2/index"])?>">
                     ADQUISICIÓN
                 </a>
             </div>
@@ -114,15 +114,6 @@ use yii\helpers\Url;
                     EMPLEADOS
                 </a>
             </div>
-            <div class="mdc-list-item mdc-drawer-item">
-                <a class="mdc-drawer-link" href="<?=Url::to(["/role"])?>">
-                    ROLES
-                </a>
-            </div>
-            <div class="mdc-list-item mdc-drawer-item-icontem">
-                <a class="mdc-drawer-link" href="<?=Url::to(["/user-role"])?>">
-                    USUARIO ROL
-                </a>
         </nav>
     </div>
 </div>
