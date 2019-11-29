@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Pedido;
 use app\models\Insumo;
+use app\models\Receta;
 use app\models\PedidoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -77,29 +78,28 @@ class PedidoController extends Controller
         
         if ($model->load(Yii::$app->request->post()) ) {
             $model->Status = true;
-            $receta = $model->getInsumos();
+            $receta = Receta::find()->where(['ProductoID' => $model->ProductoID])->all();
+            $permiso = 0;
             foreach($receta as $r){
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                $insumoid = $r->InsumoID;
-                $s = new Insumo();
-                $insumo = $s->findModel($insumoid);
-                $insumo->Stock -= $r->Cantidad;
-=======
-=======
->>>>>>> Stashed changes
-
-                $insumo = Insumo::find()->where(["InsumoID" => $r->InsumoID])->one();
-                $insumo->Stock -= ($r->Cantidad)*$model->UnidadXLote;
-                
-                $insumo->save(false);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+                $insumo = Insumo::findOne($r->InsumoID);
+                $insumo->Stock -= (($model->UnidadXLote * $r->Cantidad) / (100)); 
+                if ($insumo->Stock < 0.0){
+                   $permiso = 1; 
+                }
             }
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->PedidoID]);
+            if ($permiso == 0){
+                
+                
+                foreach($receta as $r){
+                $insumo = Insumo::findOne($r->InsumoID);
+                $insumo->Stock -= (($model->UnidadXLote * $r->Cantidad) / (100)); 
+                $insumo->save();
+                }
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->PedidoID]);
+                }else{
+                 return $this->redirect(['noti']);
+            }
         }
 
         return $this->render('create', [
@@ -135,7 +135,7 @@ class PedidoController extends Controller
         $model->FechaStatusFin = date('Y-m-d');
         $model->Status = false;
         $producto = $model->getProducto();
-        $producto->Stock+= $model->UnidadXLote;
+        $producto->Stock += $model->UnidadXLote;
         $producto->save();
         $model->save();
 
@@ -184,5 +184,9 @@ class PedidoController extends Controller
      public function init()
     {
         Yii::$app->language = 'es';
+    }
+       public function actionNoti()
+    {
+        return $this->render('noti');
     }
 }

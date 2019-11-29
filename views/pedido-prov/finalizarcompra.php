@@ -84,7 +84,7 @@ use app\models\Proveedor;
 
    
     <div class="col-md-6">
-        <?= Html::submitButton('FINALIZAR VENTA', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('FINALIZAR COMPRA', ['class' => 'btn btn-success']) ?>
     </div>
     
     <?php ActiveForm::end(); ?>

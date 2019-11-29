@@ -18,7 +18,7 @@ unset($_SESSION["detc"]);
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Nuevo Pedido A PROVEEDOR', ['nuevacompra'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('REGISTRAR COMPRA A PROVEEDOR', ['nuevacompra'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

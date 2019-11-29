@@ -10,7 +10,7 @@ use Yii;
  * @property int $InsumoID
  * @property string $Descripcion
  * @property int $UnidadPresentacionID
- * @property int $Stock
+ * @property double $Stock
  * @property double $PrecioXUnidad
  * @property int $ProveedorID
  */
@@ -30,9 +30,9 @@ class Insumo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Descripcion', 'UnidadPresentacionID', 'Stock', 'PrecioXUnidad'], 'required'],
-            [['UnidadPresentacionID', 'Stock', 'ProveedorID'], 'integer'],
-            [['PrecioXUnidad'], 'number'],
+            [['Descripcion', 'UnidadPresentacionID', 'PrecioXUnidad'], 'required'],
+            [['UnidadPresentacionID', 'ProveedorID'], 'integer'],
+            [['Stock', 'PrecioXUnidad'], 'number'],
             [['Descripcion'], 'string', 'max' => 255],
         ];
     }
@@ -51,6 +51,7 @@ class Insumo extends \yii\db\ActiveRecord
             'ProveedorID' => 'Proveedor',
         ];
     }
+    
     public function getUnidadPresentacion(){
         return $this->hasOne(Unidadpresentacion::className(),['UnidadPresentacionID'=>'UnidadPresentacionID'])->one(); 
       }
@@ -59,6 +60,4 @@ class Insumo extends \yii\db\ActiveRecord
         return $this->hasOne(Proveedor::className(),['ProveedorID'=>'ProveedorID'])->one();
       }
 
-     
 }
-
