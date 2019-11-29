@@ -16,10 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
+<div class="col-md-6">
         <?= Html::a('Crear Producto', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
+    </div>
+       <div class="col-md-6">
+        <?= Html::a('Ver Productos próximos a acabar', ['noti'], ['class' => 'btn btn-success']) ?>
+    </div>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

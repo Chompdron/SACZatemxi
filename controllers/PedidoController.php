@@ -47,8 +47,20 @@ class PedidoController extends Controller
     {
         $searchModel = new PedidoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->Where('Status > 0');
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    public function actionProdfin()
+    {
+        $searchModel = new PedidoSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->Where('Status = 0');
+
+        return $this->render('prodfin', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -145,6 +157,7 @@ class PedidoController extends Controller
 
         $searchModel = new PedidoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->Where('Status > 0');
 
         return $this->render('index', [
             'searchModel' => $searchModel,

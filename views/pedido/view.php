@@ -30,11 +30,30 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'PedidoID',
-            'ProductoID',
+            [ 'attribute' => 'ProductoID',
+                'format'=>'raw',
+              'value'=>function($model){
+                
+                return  $model->producto->Nombre ;
+              }
+            ],
             'UnidadXLote',
             'FechaInicio',
-            'FechaFin',
-            'Status:boolean',
+            'FechaFin',[ 'attribute' => 'Status',
+                'format'=>'raw',
+              'value'=>function($model){
+                
+                $str = ' ';
+              
+                if($model->Status > 0){
+                  $str .= 'En proceso';
+                }if($model->Status == 0){
+                  $str .= 'Finalizado';
+                }
+                return  $str;
+                        
+              }
+            ],
             'FechaStatusFin',
         ],
     ]) ?>

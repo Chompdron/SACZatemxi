@@ -1,27 +1,27 @@
 <?php
+
 use yii\helpers\Html;
 use yii\helpers\Url;
 use kartik\grid\GridView; 
+
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\InsumoSearch */
+/* @var $searchModel app\models\PedidoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$this->title = 'Insumos';
+
+$this->title = 'Pedidos Pendientes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="insumo-index">
+<div class="pedido-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-<div class="col-md-6">
-        <?= Html::a('Crear Insumo', ['create'], ['class' => 'btn btn-success']) ?>
+    <div class="col-md-6">
+        <?= Html::a('Regresar', ['index'], ['class' => 'btn btn-success']) ?>
     </div>
-       <div class="col-md-6">
-        <?= Html::a('Ver Insumos próximos a acabar', ['noti'], ['class' => 'btn btn-success']) ?>
-    </div>
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    
-    
+        
 <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -31,33 +31,28 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'raw',
               'value'=>function($model){
                 
-                return  Html::a("Actualizar",['/insumo/update','id'=>$model->InsumoID],["options"=>["data-pjax"=>"0"]]).
-                        '<a href="'.Url::to(['/insumo/view','id'=>$model->InsumoID]).'"  data-pjax="0">'." Ver".'</a>';
+                $str = Html::a("Actualizar",['/pedido/update','id'=>$model->PedidoID],["options"=>["data-pjax"=>"0"]]).
+                '<a href="'.Url::to(['/pedido/view','id'=>$model->PedidoID]).'"  data-pjax="0">'." Ver".'</a>';
+              
+                if($model->Status > 0){
+                  $str .= '<a href="'.Url::to(['/pedido/finalizar','id'=>$model->PedidoID]).'"  data-pjax="0">'." Finalizar".'</a>';
+                }
+                return  $str;
+                        
+              }
+            ],
+            [ 'attribute' => 'ProductoID',
+                'format'=>'raw',
+              'value'=>function($model){
+                
+                return  $model->producto->Nombre ;
               }
             ],
             
-           'InsumoID',
-           'Descripcion',
-           [ 'attribute' => 'UnidadPresentacionID',
-           'format'=>'raw',
-         'value'=>function($model){
-           
-           $UnidadPresentacion = $model->UnidadPresentacion;
-             
-           return $UnidadPresentacion->Nombre;
-         }
-       ],
-           'Stock',
-           'PrecioXUnidad',
-            [ 'attribute' => 'ProveedorID',
-           'format'=>'raw',
-         'value'=>function($model){
-           
-           $Proveedor = $model->Proveedor;
-             
-           return $Proveedor->NombreComercial;
-         }
-       ],
+            'PedidoID',
+            'UnidadXLote',
+            'FechaInicio',
+            'FechaFin',
             //['class' => 'yii\grid\ActionColumn'],
         ],
         'resizableColumns'=>true,
@@ -73,8 +68,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             '{export}'
                         ],
         'tableOptions'=>['class'=>'tbl_custom']
+
     ]); ?>
     
-   
+    
 
 </div>
