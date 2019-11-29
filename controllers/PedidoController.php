@@ -66,14 +66,23 @@ class PedidoController extends Controller
     public function actionCreate()
     {
         $model = new Pedido();
-
+        
         if ($model->load(Yii::$app->request->post()) ) {
+            $model->Status = true;
             $receta = $model->getInsumos();
             foreach($receta as $r){
+<<<<<<< Updated upstream
                 $insumoid = $r->InsumoID;
                 $s = new Insumo();
                 $insumo = $s->findModel($insumoid);
                 $insumo->Stock -= $r->Cantidad;
+=======
+
+                $insumo = Insumo::find()->where(["InsumoID" => $r->InsumoID])->one();
+                $insumo->Stock -= ($r->Cantidad)*$model->UnidadXLote;
+                
+                $insumo->save(false);
+>>>>>>> Stashed changes
             }
             $model->save();
             return $this->redirect(['view', 'id' => $model->PedidoID]);

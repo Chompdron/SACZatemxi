@@ -130,3 +130,10 @@ CREATE TABLE VentaLista (
     PrecioVenta float  NOT NULL
 );
 
+<<<<<<< Updated upstream
+=======
+
+ALTER TABLE insumo add column ProveedorID int
+
+ALTER TABLE insumo add FOREIGN KEY (ProveedorID) REFERENCES Proveedor(ProveedorID)
+>>>>>>> Stashed changes

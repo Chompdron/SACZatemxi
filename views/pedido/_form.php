@@ -20,7 +20,7 @@ use kartik\select2\Select2; // utilizados para select2
     <?php $form = ActiveForm::begin(); ?>
 
 
-
+    <div class="row">
     <div class="col-md-4 col-lg-4">
         <?=$form->field($model, 'ProductoID')->widget(Select2::classname(), [
                     'id'       => 'producto',
@@ -30,7 +30,7 @@ use kartik\select2\Select2; // utilizados para select2
     </div>
 
 
-    <br><br><br><br>
+ 
 
     <div class="col-md-4 col-lg-4">
         <?= $form->field($model, 'UnidadXLote')->textInput() ?>
@@ -43,19 +43,22 @@ use kartik\select2\Select2; // utilizados para select2
 
     </div>
     <div class="col-md-4 col-lg-4">
-        <?= $form->field($model, 'Status')->checkbox() ?>
+        <?= $form->field($model, 'Status')->checkbox(["checked"=>true])->hiddenInput() ?>
     </div>
-    <div class="col-md-4 col-lg-4">
-        <?= $form->field($model, 'FechaStatusFin')->textInput() ?>
     </div>
+    <div class="row">
+    <div class="col-sm-9"></div>
+    <div class="col-sm-3">
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Regresar',["index"], ['class' => 'btn btn-success']) ?>
     </div>
     
     <div class="form-group">
-        <?= Html::a('Regresar',["index"], ['class' => 'btn btn-success']) ?>
+        
     </div>
-
+    </div>
+</div>
     <?php ActiveForm::end(); ?>
 
 </div>

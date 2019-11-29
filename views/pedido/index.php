@@ -31,10 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'raw',
               'value'=>function($model){
                 
-
-                return  Html::a("Actualizar",['/pedido/update','id'=>$model->PedidoID],["options"=>["data-pjax"=>"0"]]).
-                        '<a href="'.Url::to(['/pedido/view','id'=>$model->PedidoID]).'"  data-pjax="0">'." Ver".'</a>'.
-                        '<a href="'.Url::to(['/pedido/finalizar','id'=>$model->PedidoID]).'"  data-pjax="0">'." Finalizar".'</a>';
+                $str = Html::a("Actualizar",['/pedido/update','id'=>$model->PedidoID],["options"=>["data-pjax"=>"0"]]).
+                '<a href="'.Url::to(['/pedido/view','id'=>$model->PedidoID]).'"  data-pjax="0">'." Ver".'</a>';
+              
+                if($model->Status > 0){
+                  $str .= '<a href="'.Url::to(['/pedido/finalizar','id'=>$model->PedidoID]).'"  data-pjax="0">'." Finalizar".'</a>';
+                }
+                return  $str;
+                        
               }
             ],
             [ 'attribute' => 'ProductoID',

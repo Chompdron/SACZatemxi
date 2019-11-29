@@ -57,4 +57,8 @@ class Insumo extends \yii\db\ActiveRecord
         return $this->hasOne(Unidadpresentacion::className(),['UnidadPresentacionID'=>'UnidadPresentacionID'])->one();;  
       }
 
+<<<<<<< Updated upstream
+=======
+     
+>>>>>>> Stashed changes
 }
