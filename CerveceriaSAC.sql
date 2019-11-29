@@ -387,6 +387,10 @@ CREATE TABLE IF NOT EXISTS `reporte3` (
 ,`Status` bit(1)
 );
 
+ALTER TABLE insumo add column ProveedorID int
+
+ALTER TABLE insumo add FOREIGN KEY (ProveedorID) REFERENCES Proveedor(ProveedorID)
+
 -- --------------------------------------------------------
 
 --
@@ -632,3 +636,4 @@ COMMIT;
 
 
 ALTER TABLE `empleado` ADD `Nombre` VARCHAR(255) NOT NULL AFTER `EmpleadoID`;
+
