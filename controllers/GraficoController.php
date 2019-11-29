@@ -82,5 +82,9 @@ class GraficoController extends Controller
     {
         return $this->render('diasmasventas.php',[]);
     }
+    public function actionMesesprod()
+    {
+        return $this->render('mesesprod.php',[]);
+    }
 }    
     

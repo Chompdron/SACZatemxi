@@ -13,19 +13,16 @@ use dosamigos\datepicker\DatePicker; //datepicker
 
 ?>
 <div class="venta-form">
-     
-    <div class="col-md-4">
+
+    <div class="col-md-12">
         <?= Html::a('Productos más vendidos',["prodventas"], ['class' => 'btn btn-success']) ?>
     </div>
+    <div class="col-md-12">
+        <?php
     
-     <div class="col-md-4">
-        <?= Html::a('Días con más ventas',["diasmasventas"], ['class' => 'btn btn-success']) ?>
+     echo \Yii::$app->view->renderFile(Yii::getAlias('@app') . '/views/grafico/diasmasventas.php');
+     echo \Yii::$app->view->renderFile(Yii::getAlias('@app') . '/views/grafico/mesesprod.php');
+     echo \Yii::$app->view->renderFile(Yii::getAlias('@app') . '/views/grafico/clientemes.php');
+    ?>
     </div>
-
-    
-    <div class="col-md-4">
-        <?= Html::a('Cliente del mes',["clientemes"], ['class' => 'btn btn-success']) ?>
-    </div>
-
-
 </div>

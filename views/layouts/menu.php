@@ -15,13 +15,17 @@ use yii\helpers\Url;
     <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">track_changes</i>
     PROVEEDOR
 </a>
-   <a class="mdc-drawer-link" href="<?=Url::to(["/venta"])?>">
+<a class="mdc-drawer-link" href="<?=Url::to(["/venta"])?>">
     <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">track_changes</i>
     PUNTO DE VENTA
 </a>
-   <a class="mdc-drawer-link" href="<?=Url::to(["/grafico"])?>">
+<a class="mdc-drawer-link" href="<?=Url::to(["/pedido-prov"])?>">
     <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">track_changes</i>
-    GRÁFICOS CHULOS
+    COMPRAS
+</a>
+<a class="mdc-drawer-link" href="<?=Url::to(["/grafico"])?>">
+    <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">track_changes</i>
+    GRÁFICOS INFORMATIVOS
 </a>
 <div class="mdc-list-item mdc-drawer-item">
     <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="ui-sub-menu">
@@ -58,11 +62,6 @@ use yii\helpers\Url;
     <div class="mdc-expansion-panel" id="pedido">
         <nav class="mdc-list mdc-drawer-submenu">
             <div class="mdc-list-item mdc-drawer-item">
-                <a class="mdc-drawer-link" href="<?=Url::to(["/pedido-prov"])?>">
-                    A PROVEEDOR
-                </a>
-            </div>
-            <div class="mdc-list-item mdc-drawer-item">
                 <a class="mdc-drawer-link" href="<?=Url::to(["/pedido"])?>">
                     A PRODUCCIÓN
                 </a>
@@ -82,16 +81,19 @@ use yii\helpers\Url;
 
                     VENTAS
                 </a>
-            </div><div class="mdc-list-item mdc-drawer-item">
+            </div>
+            <div class="mdc-list-item mdc-drawer-item">
                 <a class="mdc-drawer-link" href="<?=Url::to(["/reporte1/index"])?>">
                     ADQUISICIÓN
                 </a>
-            </div><div class="mdc-list-item mdc-drawer-item">
+            </div>
+            <div class="mdc-list-item mdc-drawer-item">
                 <a class="mdc-drawer-link" href="<?=Url::to(["/reporte3/index"])?>">
                     PEDIDOS
                 </a>
             </div>
         </nav>
+    </div>
 </div>
 <div class="mdc-list-item mdc-drawer-item">
     <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="usuario">
@@ -122,3 +124,4 @@ use yii\helpers\Url;
                 </a>
         </nav>
     </div>
+</div>
