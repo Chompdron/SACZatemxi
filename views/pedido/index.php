@@ -8,16 +8,19 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\PedidoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Pedidos';
+$this->title = 'Pedidos Pendientes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pedido-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
+    <div class="col-md-6">
         <?= Html::a('Crear un Pedido de Producción', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    </div>
+       <div class="col-md-6">
+        <?= Html::a('Ver producciones Finalizadas', ['prodfin'], ['class' => 'btn btn-success']) ?>
+    </div>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

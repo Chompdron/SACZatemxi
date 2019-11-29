@@ -52,6 +52,11 @@ class InsumoController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+     
+    public function actionNoti()
+    {
+        return $this->render('noti');
+    }
     
     public function actionBitacora($id)
     {
@@ -107,7 +112,9 @@ class InsumoController extends Controller
     {
         $model = new Insumo();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+      if ($model->load(Yii::$app->request->post())) {
+            $model->Stock=0;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->InsumoID]);
         }
 
@@ -127,7 +134,10 @@ class InsumoController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+         if ($model->load(Yii::$app->request->post())) {
+             $p= Insumo::FindOne($model->InsumoID);
+            $model->Stock=$p->Stock;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->InsumoID]);
         }
 

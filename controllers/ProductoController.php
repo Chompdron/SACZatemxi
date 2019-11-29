@@ -125,7 +125,9 @@ class ProductoController extends Controller
     {
         $model = new Producto();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->Stock=0;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->ProductoID]);
         }
 
@@ -145,7 +147,10 @@ class ProductoController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+         if ($model->load(Yii::$app->request->post())) {
+             $p= Producto::FindOne($model->ProductoID);
+            $model->Stock=$p->Stock;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->ProductoID]);
         }
 
@@ -186,5 +191,9 @@ class ProductoController extends Controller
     public function init()
     {
         Yii::$app->language = 'es';
+    }
+     public function actionNoti()
+    {
+        return $this->render('noti');
     }
 }
