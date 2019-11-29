@@ -17,10 +17,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Actualizar', ['update', 'id' => $model->InsumoID], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Bitácora de entradas', ['bitacora', 'id' => $model->InsumoID], ['class' => 'btn btn-primary']) ?> <!--P E N D I E N T E-->
+        <?= Html::a('Bitácora de salidas', ['bitacora2', 'id' => $model->InsumoID], ['class' => 'btn btn-primary']) ?> <!--P E N D I E N T E-->
         <?= Html::a('Borrar', ['delete', 'id' => $model->InsumoID], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => '¿Estás seguro que deseas borrarlo?',
+                'confirm' => '¿Seguro que lo quieres eliminar?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -31,9 +33,26 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'InsumoID',
             'Descripcion',
-            'UnidadPresentacionID',
+            [ 'attribute' => 'UnidadPresentacionID',
+           'format'=>'raw',
+         'value'=>function($model){
+           
+           $UnidadPresentacion = $model->UnidadPresentacion;
+             
+           return $UnidadPresentacion->Nombre;
+         }
+       ],
             'Stock',
             'PrecioXUnidad',
+              [ 'attribute' => 'ProveedorID',
+           'format'=>'raw',
+         'value'=>function($model){
+           
+           $Proveedor = $model->Proveedor;
+             
+           return $Proveedor->NombreComercial;
+         }
+       ],
         ],
     ]) ?>
 

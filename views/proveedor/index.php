@@ -7,7 +7,7 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\ProveedorSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Proveedors';
+$this->title = 'Proveedor';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="proveedor-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Proveedor', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Nuevo proveedor', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,9 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'value'=>function($model){
                 
                 return  Html::a("Actualizar",['/proveedor/update','id'=>$model->ProveedorID],["options"=>["data-pjax"=>"0"]]).
-                        '<a href="'.Url::to(['/proveedor/view','id'=>$model->ProveedorID]).'"  data-pjax="0">'." Ver".'</a>'.
-                        
-
+                        '<a href="'.Url::to(['/proveedor/view','id'=>$model->ProveedorID]).'"  data-pjax="0">'." Ver".'</a>';
               }
             ],
             

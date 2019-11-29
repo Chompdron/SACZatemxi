@@ -9,6 +9,9 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\VentaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+unset($_SESSION["venta"]);
+unset($_SESSION["detv"]);
+
 $this->title = 'Ventas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -31,8 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'value'=>function($model){
                 
 
-                return  Html::a("Actualizar",['/venta/update','id'=>$model->VentaID],["options"=>["data-pjax"=>"0"]]).
-                        '<a href="'.Url::to(['/venta/view','id'=>$model->VentaID]).'"  data-pjax="0">'." Ver".'</a>';
+                return  Html::a("TICKET",['/venta/view','id'=>$model->VentaID],["options"=>["data-pjax"=>"0"]]);
 
               }
             ],
@@ -41,7 +43,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'Fecha',
             'Total',
 
-            'Descuento',
             [ 'attribute' => 'ClienteID',
                 'format'=>'raw',
               'value'=>function($model){

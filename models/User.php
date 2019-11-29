@@ -34,11 +34,11 @@ class User extends \yii\db\ActiveRecord  implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'userid' => 'Userid',
+            'userid' => 'Usuario',
             'username' => 'Usuario',
             'password' => 'Contraseña',
             'nacimiento' => 'Fecha de nacimiento',
-            'fecha2' => 'Fecha 2'
+            'fecha2' => 'Fecha'
         ];
     }   
 

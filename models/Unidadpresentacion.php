@@ -39,9 +39,9 @@ class Unidadpresentacion extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'UnidadPresentacionID' => 'Unidad Presentacion ID',
+            'UnidadPresentacionID' => 'Unidad de Presentacion',
             'Nombre' => 'Nombre',
-            'cantidadMlGInd' => 'Cantidad Ml G Ind',
+            'cantidadMlGInd' => 'Cantidad en ml/g/unidad',
         ];
     }
 }
